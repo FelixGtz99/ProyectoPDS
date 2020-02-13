@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
  *
  * @author PC
  */
-public class TeacherSearchController implements Initializable {
+public class SearcherController implements Initializable {
 
     @FXML
     private Button btnSignup;

@@ -19,9 +19,13 @@ import javafx.scene.control.Button;
 public class AccountMenuController implements Initializable {
 
     @FXML
-    private Button btnSignup;
+    private Button btnRegistrar;
     @FXML
-    private Button btnSignup1;
+    private Button btnIngresar;
+    @FXML
+    private Button btnCerrar;
+    @FXML
+    private Button btnSalir;
 
     /**
      * Initializes the controller class.

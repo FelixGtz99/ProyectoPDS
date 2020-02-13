@@ -22,9 +22,9 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnSignup" layoutX="42.0" layoutY="180.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Registrar" />
-      <Button fx:id="btnSignup1" layoutX="42.0" layoutY="266.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Ingresar" />
-      <Button fx:id="btnSignup11" layoutX="42.0" layoutY="346.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Cerrar Sesión" />
-      <Button fx:id="btnSignup12" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnRegistrar" layoutX="42.0" layoutY="180.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Registrar" />
+      <Button fx:id="btnIngresar" layoutX="42.0" layoutY="266.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Ingresar" />
+      <Button fx:id="btnCerrar" layoutX="42.0" layoutY="346.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Cerrar Sesión" />
+      <Button fx:id="btnSalir" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Salir" />
    </children>
 </AnchorPane>

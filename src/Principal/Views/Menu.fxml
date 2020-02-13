@@ -22,11 +22,11 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnSignup" layoutX="111.0" layoutY="148.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Cuenta" />
-      <Button fx:id="btnSignup1" layoutX="111.0" layoutY="199.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Docente" />
-      <Button fx:id="btnSignup2" layoutX="111.0" layoutY="246.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Evaluaciones" />
-      <Button fx:id="btnSignup3" layoutX="111.0" layoutY="294.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Buscar" />
-      <Button fx:id="btnSignup4" layoutX="111.0" layoutY="343.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Actividad Reciente" />
-      <Button fx:id="btnSignup5" layoutX="360.0" layoutY="452.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnCuenta" layoutX="111.0" layoutY="148.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Cuenta" />
+      <Button fx:id="btnRD" layoutX="111.0" layoutY="199.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Docente" />
+      <Button fx:id="btnRE" layoutX="111.0" layoutY="246.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Evaluaciones" />
+      <Button fx:id="btnBuscar" layoutX="111.0" layoutY="294.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Buscar" />
+      <Button fx:id="btnAR" layoutX="111.0" layoutY="343.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Actividad Reciente" />
+      <Button fx:id="btnSalir" layoutX="360.0" layoutY="452.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" stylesheets="@../Estilos.css" text="Salir" />
    </children>
 </AnchorPane>

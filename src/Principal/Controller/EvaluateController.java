@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Slider;
 
 /**
  * FXML Controller class
@@ -19,9 +21,17 @@ import javafx.scene.control.Button;
 public class EvaluateController implements Initializable {
 
     @FXML
-    private Button btnSignup;
+    private Button btnEnviar;
     @FXML
-    private Button btnSignup1;
+    private Button btnAgregar;
+    @FXML
+    private Button btnSalir;
+    @FXML
+    private ComboBox cbDocente;
+     @FXML
+    private ComboBox cbMateria;
+      @FXML
+    private Slider slCalif;
 
     /**
      * Initializes the controller class.
