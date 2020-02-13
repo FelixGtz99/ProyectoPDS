@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.AccountMenuController">
+<AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.MenuController">
    <stylesheets>
       <URL value="@../Estilos.css" />
       <URL value="@../Estilos.css" />
