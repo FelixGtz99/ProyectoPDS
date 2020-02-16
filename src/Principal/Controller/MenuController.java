@@ -27,30 +27,93 @@ public class MenuController implements Initializable {
     @FXML
     private Button btnCuenta;
     @FXML
-    private Button btnSignup1;
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    private Button btnRD;
      @FXML
-    public void handleButtonAction(MouseEvent event) {
+    private Button btnRE;
+      @FXML
+    private Button btnBuscar;
+       @FXML
+    private Button btnAR;
+
+    @FXML
+     public void ChangeView(MouseEvent event) {
 
         if (event.getSource() == btnCuenta) {
       
-  
                 try {
-
-               
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Views/AccountMenu.fxml")));
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/Principal/Views/AccountMenu.fxml")));
                     stage.setScene(scene);
+  
                     stage.show();
+                   
+                } catch (IOException ex) {
+                    System.err.println(ex.getMessage());
+                }
+
+            
+        }
+         if (event.getSource() == btnRD) {
+      
+                try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/Principal/Views/TeacherRegister.fxml")));
+                    stage.setScene(scene);
+  
+                    stage.show();
+                   
+                } catch (IOException ex) {
+                    System.err.println(ex.getMessage());
+                }
+
+            
+        } if (event.getSource() == btnRE) {
+      
+                try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/Principal/Views/Evaluate.fxml")));
+                    stage.setScene(scene);
+  
+                    stage.show();
+                   
+                } catch (IOException ex) {
+                    System.err.println(ex.getMessage());
+                }
+
+            
+        } if (event.getSource() == btnBuscar) {
+      
+                try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/Principal/Views/Searcher.fxml")));
+                    stage.setScene(scene);
+  
+                    stage.show();
+                   
+                } catch (IOException ex) {
+                    System.err.println(ex.getMessage());
+                }
+
+            
+        } if (event.getSource() == btnAR) {
+      
+                try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/Principal/Views/Login.fxml")));
+                    stage.setScene(scene);
+  
+                    stage.show();
+                   
                 } catch (IOException ex) {
                     System.err.println(ex.getMessage());
                 }
@@ -59,4 +122,10 @@ public class MenuController implements Initializable {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    
+   
 }

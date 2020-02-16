@@ -1,6 +1,6 @@
 .archor { 
 -fx-background: #232526; 
--fx-background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+
 -fx-background: linear-gradient(to right, #414345, #232526); 
 }
 .button

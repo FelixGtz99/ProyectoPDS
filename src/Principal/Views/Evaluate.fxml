@@ -34,7 +34,7 @@
       <Label layoutX="122.0" layoutY="206.0" text="Nueva Materia" textFill="#fcfcfc" />
       <Label layoutX="128.0" layoutY="282.0" text="Comentario" textFill="#fcfcfc" />
       <Slider fx:id="sliCalif" layoutX="109.0" layoutY="492.0" max="10.0" prefHeight="14.0" prefWidth="291.0" styleClass="jfx-slider" stylesheets="@../Estilos.css" />
-      <Button fx:id="btnEnviar" layoutX="230.0" layoutY="507.0" mnemonicParsing="false" stylesheets="@../Estilos.css" text="Enviar" />
-      <Button fx:id="btnSalir" layoutX="443.0" layoutY="520.0" mnemonicParsing="false" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnEnviar" layoutX="230.0" layoutY="507.0" mnemonicParsing="false" stylesheets="@../Estilos.css" text="Enviar" onMouseClicked="#ButtonAction" />
+      <Button fx:id="btnSalir" layoutX="443.0" layoutY="520.0" mnemonicParsing="false" stylesheets="@../Estilos.css" text="Salir"  onMouseClicked="#ButtonAction" />
    </children>
 </AnchorPane>

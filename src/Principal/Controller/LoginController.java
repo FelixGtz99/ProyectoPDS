@@ -43,13 +43,13 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-     private String logIn() {
-        String status = "Success";
+     private Boolean logIn() {
+        Boolean status = true;
         String email = txtEmail.getText();
         String password = txtPass.getText();
         if(email.isEmpty() || password.isEmpty()) {
             System.out.println("Elementos Vacios");
-            status="Error";
+            status=false;
         } else {
             
             //String sql = "SELECT * FROM admins Where email = ? and password = ?";
@@ -65,28 +65,41 @@ public class LoginController implements Initializable {
         return status;
     }
     @FXML
-    public void handleAction(MouseEvent event) {
+    public void ButtonAction(MouseEvent event) {
 
         if (event.getSource() == btnIngresar) {
             System.out.println("Entro en boton");
-            if (logIn().equals("Success")) {
-                try {
-
-                    //add you loading or delays - ;-)
+            if (logIn()) {
+                 try {
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
-                    //stage.setMaximized(true);
                     stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/fxml/AccountMenu.fxml")));
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/Principal/Views/Menu.fxml")));
                     stage.setScene(scene);
+  
                     stage.show();
-
+                   
                 } catch (IOException ex) {
                     System.err.println(ex.getMessage());
                 }
-
+              
+                 
+            }   else{
+             try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/Principal/Views/AccountMenu.fxml")));
+                    stage.setScene(scene);
+  
+                    stage.show();
+                   
+                } catch (IOException ex) {
+                    System.err.println(ex.getMessage());
+                }
+              
+                 
+            } 
             }
         }
     }
-}
-

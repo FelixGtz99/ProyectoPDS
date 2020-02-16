@@ -5,11 +5,17 @@
  */
 package Principal.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -19,13 +25,23 @@ import javafx.scene.control.Button;
 public class UserRegisterController implements Initializable {
 
     @FXML
-    private Button btnSignup;
+    private Button btnRegistrar;
     @FXML
-    private Button btnSignup1;
+    private Button btnSalir;
 
-    /**
-     * Initializes the controller class.
-     */
+    public void ButtonAction(MouseEvent event) {
+
+        if (event.getSource() == btnRegistrar) {
+      
+               
+        }
+
+        if (event.getSource() == btnSalir) {
+      
+             
+
+            
+        }}
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

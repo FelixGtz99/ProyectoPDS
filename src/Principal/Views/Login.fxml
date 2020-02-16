@@ -27,7 +27,7 @@
       </Label>
       <Pane layoutX="37.0" layoutY="176.0" prefHeight="236.0" prefWidth="284.0">
          <children>
-            <Button fx:id="btnIngresar" layoutX="66.0" layoutY="177.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="164.0" stylesheets="@../Estilos.css" text="Ingresar" />
+            <Button fx:id="btnIngresar" layoutX="66.0" layoutY="177.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="164.0" stylesheets="@../Estilos.css" text="Ingresar" onMouseClicked="#ButtonAction" />
             <Label layoutX="14.0" prefHeight="43.0" prefWidth="148.0" text="Correo Electronico" textFill="WHITE" />
             <Label layoutX="14.0" layoutY="75.0" prefHeight="43.0" prefWidth="148.0" text="Contraseña" textFill="WHITE" />
             <TextField fx:id="txtEmail" layoutX="32.0" layoutY="43.0" />

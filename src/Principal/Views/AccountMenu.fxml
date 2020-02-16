@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="553.0" prefWidth="357.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.AccountMenuController">
    <stylesheets>
       <URL value="@../Estilos.css" />
       <URL value="@../Estilos.css" />
@@ -22,9 +22,9 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrar" layoutX="42.0" layoutY="180.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Registrar" />
-      <Button fx:id="btnIngresar" layoutX="42.0" layoutY="266.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Ingresar" />
-      <Button fx:id="btnCerrar" layoutX="42.0" layoutY="346.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Cerrar Sesión" />
-      <Button fx:id="btnSalir" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnRegistrar" layoutX="42.0" layoutY="180.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Registrar" onMouseClicked="#ButtonAction" />
+      <Button fx:id="btnIngresar" layoutX="42.0" layoutY="266.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Ingresar"  onMouseClicked="#ButtonAction"/>
+      <Button fx:id="btnCerrar" layoutX="42.0" layoutY="346.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Cerrar Sesión"  onMouseClicked="#ButtonAction" />
+      <Button fx:id="btnSalir" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Salir"  onMouseClicked="#ButtonAction"/>
    </children>
 </AnchorPane>

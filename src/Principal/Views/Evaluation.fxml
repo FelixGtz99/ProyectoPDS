@@ -24,12 +24,12 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnLike" layoutX="336.0" layoutY="223.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="Me gusta " />
-      <Button fx:id="btnDislike" layoutX="334.0" layoutY="282.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="No me gusta" />
+      <Button fx:id="btnLike" layoutX="336.0" layoutY="223.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="Me gusta "  onMouseClicked="#ButtonAction" />
+      <Button fx:id="btnDislike" layoutX="334.0" layoutY="282.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="No me gusta"  onMouseClicked="#ButtonAction"/>
       <TextArea layoutX="79.0" layoutY="210.0" prefHeight="222.0" prefWidth="224.0" />
       <ComboBox layoutX="90.0" layoutY="116.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" />
       <ComboBox layoutX="88.0" layoutY="157.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" />
-      <Button fx:id="btnVotar" layoutX="125.0" layoutY="461.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="Votar" />
-      <Button fx:id="btnSalir" layoutX="375.0" layoutY="548.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnVotar" layoutX="125.0" layoutY="461.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="Votar"  onMouseClicked="#ButtonAction"/>
+      <Button fx:id="btnSalir" layoutX="375.0" layoutY="548.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" stylesheets="@../Estilos.css" text="Salir" onMouseClicked="#ButtonAction" />
    </children>
 </AnchorPane>

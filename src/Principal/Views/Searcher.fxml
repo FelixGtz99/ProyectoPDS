@@ -28,7 +28,7 @@
       </Label>
       <Pane layoutX="109.0" layoutY="135.0" prefHeight="164.0" prefWidth="410.0">
          <children>
-            <Button fx:id="btnBuscar" layoutX="281.0" layoutY="123.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Buscar" />
+            <Button fx:id="btnBuscar" layoutX="281.0" layoutY="123.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Buscar"  onMouseClicked="#ButtonAction"/>
             <RadioButton fx:id="rbDocente" layoutX="67.0" layoutY="123.0" mnemonicParsing="false" text="Docente" textFill="WHITE" />
             <RadioButton fx:id="rbMateria" layoutX="172.0" layoutY="123.0" mnemonicParsing="false" text="Materia" textFill="WHITE" />
             <TextField fx:id="txtBuscar" layoutX="106.0" layoutY="57.0" prefHeight="25.0" prefWidth="255.0" />
@@ -46,8 +46,8 @@
             <ListView fx:id="listMateria" layoutX="27.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </Pane>
-      <Button fx:id="btnEvaluaciones" layoutX="185.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="116.0" stylesheets="@../Estilos.css" text="Ver Evaluaciones" />
-      <Button fx:id="btnEvaluar" layoutX="335.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Evaluar" />
-      <Button fx:id="btnSalir" layoutX="519.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnEvaluaciones" layoutX="185.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="116.0" stylesheets="@../Estilos.css" text="Ver Evaluaciones"  onMouseClicked="#ButtonAction"/>
+      <Button fx:id="btnEvaluar" layoutX="335.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Evaluar"  onMouseClicked="#ButtonAction" />
+      <Button fx:id="btnSalir" layoutX="519.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Salir" onMouseClicked="#ButtonAction" />
    </children>
 </AnchorPane>
