@@ -5,8 +5,12 @@
  */
 package Principal.Controller;
 
+import Principal.Database.BaseDeDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -35,7 +39,9 @@ public class LoginController implements Initializable {
     private TextField txtPass;
     
     
-
+ Connection con = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
     /**
      * Initializes the controller class.
      */
@@ -43,24 +49,38 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-     private Boolean logIn() {
-        Boolean status = true;
+   
+     public LoginController() {
+        con = BaseDeDatos.Conexion();
+    }
+
+    //we gonna use string to check for status
+    private String logIn() {
+        String status = "Success";
         String email = txtEmail.getText();
         String password = txtPass.getText();
         if(email.isEmpty() || password.isEmpty()) {
-            System.out.println("Elementos Vacios");
-            status=false;
+            System.out.println( "No tiene datos");
+            status = "Error";
         } else {
-            
-            //String sql = "SELECT * FROM admins Where email = ? and password = ?";
-            if (email.equals("123") && password.equals("123")) {
-                System.out.println("Contraseña correcta");
-            }else{
-                System.out.println("Incorrecto");
+            //query
+            String sql = "SELECT * FROM usuarios Where correo = ? and contraseña = ?";
+            try {
+                preparedStatement = con.prepareStatement(sql);
+                preparedStatement.setString(1, email);
+                preparedStatement.setString(2, password);
+                resultSet = preparedStatement.executeQuery();
+                if (!resultSet.next()) {
+                    System.out.println("Enter Correct Email/Password");
+                    status = "Error";
+                } else {
+                    System.out.println("Login Successful..Redirecting..");
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                status = "Exception";
             }
-               
-            }
-        
+        }
         
         return status;
     }
@@ -69,7 +89,7 @@ public class LoginController implements Initializable {
 
         if (event.getSource() == btnIngresar) {
             System.out.println("Entro en boton");
-            if (logIn()) {
+            if (logIn().equals("Success")) {
                  try {
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();

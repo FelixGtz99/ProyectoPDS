@@ -1,0 +1,37 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Principal.Database;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+/**
+ *
+ * @author sebas
+ */
+public class BaseDeDatos {
+    
+   static  public String DRIVER = "org.postgresql.Driver";
+    static public String DBNAME   = "df7nof0rr08vt4";
+    static public String HOSTNAME = "ec2-52-203-160-194.compute-1.amazonaws.com";
+   static  public String PORT="5432";
+    static public String URL="jdbc:postgresql://"+HOSTNAME+":"+PORT+"/"+DBNAME;
+   static public String USERNAME = "vhrezzjpiqdvwi";
+    static public String PASSWORD = "f6605749682aa84f7c72919c4af459b609a1d0c9c6e788b2480f1f98fdde5265";
+    
+   // public abstract boolean ConnectDB();
+    public static Connection Conexion(){
+        Connection cn=null;
+        try {
+            Class.forName(DRIVER);
+            cn=DriverManager.getConnection(URL,USERNAME,PASSWORD);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cn;
+       
+    }
+}
