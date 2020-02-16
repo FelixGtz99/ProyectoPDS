@@ -54,7 +54,7 @@ public class LoginController implements Initializable {
         con = BaseDeDatos.Conexion();
     }
 
-    //we gonna use string to check for status
+    //Ingreso de sesion
     private String logIn() {
         String status = "Success";
         String email = txtEmail.getText();
