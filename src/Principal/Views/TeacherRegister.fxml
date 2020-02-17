@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="476.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.TeacherRegisterController">
+<AnchorPane id="AnchorPane" prefHeight="476.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.TeacherRegisterController">
    <stylesheets>
       <URL value="@../Estilos.css" />
       <URL value="@../Estilos.css" />
@@ -24,7 +24,7 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrar" layoutX="146.0" layoutY="376.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="159.0" stylesheets="@../Estilos.css" text="Registrar" />
+      <Button fx:id="btnRegistrar" layoutX="146.0" layoutY="376.0" mnemonicParsing="false" onAction="#register" prefHeight="49.0" prefWidth="159.0" stylesheets="@../Estilos.css" text="Registrar" />
       <Pane layoutX="105.0" layoutY="125.0" prefHeight="223.0" prefWidth="236.0">
          <children>
             <Label layoutX="22.0" layoutY="45.0" text="Nombres" textFill="WHITE" />

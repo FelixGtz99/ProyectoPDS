@@ -18,6 +18,7 @@ public class Usuario {
    private String career;
    private String password;
    private String record;
+   private String alias;
 
    public Usuario(String name, String surname, String email, String career, String password, String record) {
       this.name = name;
@@ -27,6 +28,12 @@ public class Usuario {
       this.password = password;
       this.record = record;
    }
+
+    public Usuario(String name, String surname, String alias) {
+        this.name = name;
+        this.surname = surname;
+        this.alias = alias;
+    }
 
    public String getName() {
       return name;
@@ -75,6 +82,14 @@ public class Usuario {
    public void setRecord(String record) {
       this.record = record;
    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
 
    
    
