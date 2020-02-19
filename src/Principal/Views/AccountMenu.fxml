@@ -17,14 +17,14 @@
       <String fx:value="archor" />
    </styleClass>
    <children>
-      <Label alignment="CENTER" layoutX="22.0" layoutY="79.0" prefHeight="23.0" prefWidth="314.0" text="Cuenta" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="14.0" layoutY="89.0" prefHeight="23.0" prefWidth="314.0" text="Cuenta" textFill="WHITE">
          <font>
-            <Font name="Marlett" size="17.0" />
+            <Font name="Marlett" size="28.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrar" layoutX="42.0" layoutY="180.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Registrar" onMouseClicked="#ButtonAction" />
-      <Button fx:id="btnIngresar" layoutX="42.0" layoutY="266.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Ingresar"  onMouseClicked="#ButtonAction"/>
-      <Button fx:id="btnCerrar" layoutX="42.0" layoutY="346.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Cerrar Sesión"  onMouseClicked="#ButtonAction" />
-      <Button fx:id="btnSalir" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Salir"  onMouseClicked="#ButtonAction"/>
+      <Button fx:id="btnRegistrar" layoutX="41.0" layoutY="176.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Registrar" />
+      <Button fx:id="btnIngresar" layoutX="41.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Ingresar" />
+      <Button fx:id="btnCerrar" layoutX="41.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Cerrar Sesión" />
+      <Button fx:id="btnSalir" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Salir" />
    </children>
 </AnchorPane>

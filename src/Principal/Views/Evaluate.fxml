@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -21,20 +20,17 @@
       <String fx:value="archor" />
    </styleClass>
    <children>
-      <Label alignment="CENTER" layoutX="22.0" layoutY="79.0" prefHeight="23.0" prefWidth="314.0" text="EVALUAR" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="80.0" layoutY="87.0" prefHeight="23.0" prefWidth="314.0" text="EVALUAR" textFill="WHITE">
          <font>
-            <Font name="Marlett" size="17.0" />
+            <Font name="Marlett" size="22.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbDocente" layoutX="107.0" layoutY="124.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
-      <ComboBox fx:id="cbMateria" layoutX="107.0" layoutY="167.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
-      <Button fx:id="btnAgregar" layoutX="350.0" layoutY="235.0" mnemonicParsing="false" stylesheets="@../Estilos.css" text="Añadir" />
-      <TextField fx:id="txtNMateria" layoutX="107.0" layoutY="236.0" />
+      <ComboBox fx:id="cbDocente" layoutX="107.0" layoutY="135.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
+      <ComboBox fx:id="cbMateria" layoutX="107.0" layoutY="199.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
       <TextArea fx:id="txtComentario" layoutX="115.0" layoutY="313.0" prefHeight="140.0" prefWidth="297.0" />
-      <Label layoutX="122.0" layoutY="206.0" text="Nueva Materia" textFill="#fcfcfc" />
       <Label layoutX="128.0" layoutY="282.0" text="Comentario" textFill="#fcfcfc" />
-      <Slider fx:id="sliCalif" layoutX="109.0" layoutY="492.0" max="10.0" prefHeight="14.0" prefWidth="291.0" styleClass="jfx-slider" stylesheets="@../Estilos.css" />
-      <Button fx:id="btnEnviar" layoutX="230.0" layoutY="507.0" mnemonicParsing="false" stylesheets="@../Estilos.css" text="Enviar" onMouseClicked="#ButtonAction" />
-      <Button fx:id="btnSalir" layoutX="443.0" layoutY="520.0" mnemonicParsing="false" stylesheets="@../Estilos.css" text="Salir"  onMouseClicked="#ButtonAction" />
+      <Slider fx:id="sliCalif" layoutX="110.0" layoutY="482.0" max="10.0" prefHeight="14.0" prefWidth="291.0" styleClass="jfx-slider" stylesheets="@../Estilos.css" />
+      <Button fx:id="btnEnviar" layoutX="230.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Enviar" />
+      <Button fx:id="btnSalir" layoutX="443.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Salir" />
    </children>
 </AnchorPane>

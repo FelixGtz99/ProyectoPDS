@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -32,12 +33,18 @@ public class SearcherController implements Initializable {
     private Button btnEvaluar;
     @FXML
     private Button btnEvaluaciones;
+    @FXML
+    private RadioButton rbDocente;
+    @FXML
+    private RadioButton rbMateria;
     
     public void ButtonAction(MouseEvent event) {
 
         if (event.getSource() == btnBuscar) {
       
-              
+              if (rbMateria.isSelected()) {
+                
+            }
         }
 
         if (event.getSource() == btnEvaluar) {

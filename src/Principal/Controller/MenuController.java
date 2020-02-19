@@ -35,7 +35,6 @@ public class MenuController implements Initializable {
        @FXML
     private Button btnAR;
 
-    @FXML
      public void ChangeView(MouseEvent event) {
 
         if (event.getSource() == btnCuenta) {
