@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.EvaluateController">
+<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.Controller">
    <stylesheets>
       <URL value="@../Estilos.css" />
       <URL value="@../Estilos.css" />
@@ -25,12 +25,12 @@
             <Font name="Marlett" size="22.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbDocente" layoutX="107.0" layoutY="135.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
-      <ComboBox fx:id="cbMateria" layoutX="107.0" layoutY="199.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
-      <TextArea fx:id="txtComentario" layoutX="115.0" layoutY="313.0" prefHeight="140.0" prefWidth="297.0" />
+      <ComboBox fx:id="cbDocenteEV" layoutX="107.0" layoutY="135.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
+      <ComboBox fx:id="cbMateriaEV" layoutX="107.0" layoutY="199.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
+      <TextArea fx:id="txtComentarioEV" layoutX="115.0" layoutY="313.0" prefHeight="140.0" prefWidth="297.0" />
       <Label layoutX="128.0" layoutY="282.0" text="Comentario" textFill="#fcfcfc" />
-      <Slider fx:id="sliCalif" layoutX="110.0" layoutY="482.0" max="10.0" prefHeight="14.0" prefWidth="291.0" styleClass="jfx-slider" stylesheets="@../Estilos.css" />
-      <Button fx:id="btnEnviar" layoutX="230.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Enviar" />
-      <Button fx:id="btnSalir" layoutX="443.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnEnviarEV" layoutX="230.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Enviar" />
+      <Button fx:id="btnSalirEV" layoutX="443.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Salir" />
+      <Slider fx:id="sliCalifEV" blockIncrement="1.0" layoutX="128.0" layoutY="465.0" majorTickUnit="1.0" max="10.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" styleClass="jfx-slider" />
    </children>
 </AnchorPane>

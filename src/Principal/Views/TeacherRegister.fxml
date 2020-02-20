@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="476.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.TeacherRegisterController">
+<AnchorPane id="AnchorPane" prefHeight="476.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.Controller">
    <stylesheets>
       <URL value="@../Estilos.css" />
       <URL value="@../Estilos.css" />
@@ -24,15 +24,15 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrar" layoutX="146.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="49.0" prefWidth="159.0" stylesheets="@../Estilos.css" text="Registrar" />
+      <Button fx:id="btnRegistrarTR" layoutX="146.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="49.0" prefWidth="159.0" stylesheets="@../Estilos.css" text="Registrar" />
       <Pane layoutX="105.0" layoutY="125.0" prefHeight="219.0" prefWidth="264.0">
          <children>
             <Label layoutX="22.0" layoutY="45.0" text="Nombres" textFill="WHITE" />
-            <TextField fx:id="txtNombres" layoutX="63.0" layoutY="68.0" prefHeight="27.0" prefWidth="188.0" styleClass="text-input" stylesheets="@../Estilos.css" />
+            <TextField fx:id="txtNombresTR" layoutX="63.0" layoutY="68.0" prefHeight="27.0" prefWidth="188.0" styleClass="text-input" stylesheets="@../Estilos.css" />
             <Label layoutX="22.0" layoutY="95.0" text="Apellidos" textFill="WHITE" />
-            <TextField fx:id="txtApellidos" layoutX="63.0" layoutY="117.0" prefHeight="27.0" prefWidth="188.0" />
+            <TextField fx:id="txtApellidosTR" layoutX="63.0" layoutY="117.0" prefHeight="27.0" prefWidth="188.0" />
             <Label layoutX="22.0" layoutY="144.0" text="Alias" textFill="WHITE" />
-            <TextField fx:id="txtAlias" layoutX="63.0" layoutY="161.0" prefHeight="27.0" prefWidth="188.0" />
+            <TextField fx:id="txtAliasTR" layoutX="63.0" layoutY="161.0" prefHeight="27.0" prefWidth="188.0" />
          </children>
       </Pane>
    </children>

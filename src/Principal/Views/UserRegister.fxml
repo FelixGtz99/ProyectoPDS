@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.UserRegisterController">
+<AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.RegisterController">
    <stylesheets>
       <URL value="@../Estilos.css" />
       <URL value="@../Estilos.css" />
@@ -24,19 +24,19 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrar" layoutX="125.0" layoutY="379.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="66.0" prefWidth="124.0" stylesheets="@../Estilos.css" text="Registrar" />
-      <Button fx:id="btnSalir" layoutX="359.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="23.0" prefWidth="53.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnRegistrarUR" layoutX="125.0" layoutY="379.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="66.0" prefWidth="124.0" stylesheets="@../Estilos.css" text="Registrar" />
+      <Button fx:id="btnSalirUR" layoutX="359.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="23.0" prefWidth="53.0" stylesheets="@../Estilos.css" text="Salir" />
       <Label layoutX="89.0" layoutY="118.0" text="Correo Electronico" textFill="WHITE" />
-      <TextField fx:id="txtEmail" layoutX="198.0" layoutY="113.0" />
+      <TextField fx:id="txtEmailUR" layoutX="198.0" layoutY="113.0" />
       <Label layoutX="95.0" layoutY="160.0" text="Contraseña" textFill="WHITE" />
-      <TextField fx:id="txtNombres" layoutX="198.0" layoutY="201.0" />
+      <TextField fx:id="txtNombresUR" layoutX="198.0" layoutY="201.0" />
       <Label layoutX="108.0" layoutY="206.0" text="Nombres" textFill="WHITE" />
-      <TextField fx:id="txtApellidos" layoutX="198.0" layoutY="239.0" />
+      <TextField fx:id="txtApellidosUR" layoutX="198.0" layoutY="239.0" />
       <Label layoutX="108.0" layoutY="244.0" text="Apellidos" textFill="WHITE" />
-      <TextField fx:id="txtExpediente" layoutX="198.0" layoutY="279.0" />
+      <TextField fx:id="txtExpedienteUR" layoutX="198.0" layoutY="279.0" />
       <Label layoutX="109.0" layoutY="284.0" text="Expediente" textFill="WHITE" />
-      <TextField fx:id="txtCarrera" layoutX="198.0" layoutY="320.0" />
+      <TextField fx:id="txtCarreraUR" layoutX="198.0" layoutY="320.0" />
       <Label layoutX="119.0" layoutY="325.0" text="Carrera" textFill="WHITE" />
-      <PasswordField fx:id="txtPassword" layoutX="198.0" layoutY="155.0" />
+      <PasswordField fx:id="txtPasswordUR" layoutX="198.0" layoutY="155.0" />
    </children>
 </AnchorPane>

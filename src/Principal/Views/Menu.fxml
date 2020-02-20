@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.Controller">
    <stylesheets>
       <URL value="@../Estilos.css" />
       <URL value="@../Estilos.css" />
@@ -22,26 +22,26 @@
             <Font name="Marlett" size="40.0" />
          </font>
       </Label>
-      <Button fx:id="btnCuenta" layoutX="111.0" layoutY="148.0" mnemonicParsing="false" onMouseClicked="#ChangeView" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Cuenta">
+      <Button fx:id="btnCuentaMenu" layoutX="111.0" layoutY="148.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Cuenta">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="btnRD" layoutX="111.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#ChangeView" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Docente">
+      <Button fx:id="btnRDMenu" layoutX="111.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Docente">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="btnRE" layoutX="111.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#ChangeView" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Evaluaciones">
+      <Button fx:id="btnREMenu" layoutX="111.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Evaluaciones">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="btnBuscar" layoutX="111.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#ChangeView" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Buscar">
+      <Button fx:id="btnBuscarMenu" layoutX="111.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Buscar">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="btnAR" layoutX="111.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#ChangeView" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Actividad Reciente">
+      <Button fx:id="btnARMenu" layoutX="111.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Actividad Reciente">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="btnSalir" layoutX="360.0" layoutY="452.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnSalirMenu" layoutX="360.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="112.0" stylesheets="@../Estilos.css" text="Salir" />
    </children>
 </AnchorPane>
