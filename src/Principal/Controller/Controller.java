@@ -2,6 +2,12 @@
 package Principal.Controller;
 
 import Principal.Database.BaseDeDatos;
+import Validators.CompositeValidator;
+import Validators.EmailRecordValidator;
+import Validators.NameValidator;
+import Validators.PasswordCareerValidator;
+import Validators.Usuario;
+import Validators.Validator;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,12 +26,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class Controller implements Initializable {
     //Elementos Generales   
@@ -33,6 +42,8 @@ public class Controller implements Initializable {
     ResultSet resultSet = null;
     static Boolean  sta= false;
     static int UserID=0;
+    static int sID=0;
+    static String E,M;
     //Elementos AccountMenu
     @FXML private Button btnRegistrarAM;
     @FXML private Button btnIngresarAM;
@@ -47,9 +58,10 @@ public class Controller implements Initializable {
     @FXML private TextArea txtComentarioEV;
     //Elementos Evaluation
     @FXML private Button btnSalirEN;
-    @FXML private Button btnVotarEN;
+    @FXML private Button btnVerEN;
     @FXML private Button btnLikeEN;
     @FXML private Button btnDislikeEN;
+    @FXML private ListView listEvaluation;
     //Elementos Login 
     @FXML private Button btnIngresarL;
     @FXML private TextField txtEmailL;
@@ -71,13 +83,23 @@ public class Controller implements Initializable {
     @FXML private Button btnEvaluacionesS;
     @FXML private RadioButton rbDocenteS;
     @FXML private RadioButton rbMateriaS;
+    @FXML private TextField txtBuscarS;
+    @FXML private ListView listMateriaS;
+    @FXML private ListView listDocenteS;
     // Elementos Teacher Register
     @FXML private Button btnRegistrarTR;
     @FXML private TextField txtNombresTR;
     @FXML private TextField txtApellidosTR;
     @FXML private TextField txtAliasTR;
-    //
-    
+    //Elementos User Register
+    @FXML private Button btnRegistrarUR;
+     @FXML private TextField txtNombresUR;
+     @FXML private TextField txtApellidosUR;
+     @FXML private TextField txtEmailUR;
+     @FXML private TextField txtPasswordUR;
+     @FXML private TextField txtExpedienteUR;
+     @FXML private TextField txtCarreraUR;
+ 
   public void ButtonAction(MouseEvent event) {
       //Botones AccountMenu
       if (event.getSource()==btnRegistrarAM) {
@@ -110,8 +132,24 @@ public class Controller implements Initializable {
       if (event.getSource()==btnSalirEN) {
           ChangeView("Menu",event);
       }
-      if (event.getSource()==btnVotarEN) {
-         // ChangeView("UserRegister",event);
+      if (event.getSource()==btnVerEN) {
+         int Materia=ConsultarIDMateria();
+         int Docente=ConsultarIDDocente();
+           String sql = "SELECT calificacion, comentario FROM usuarios Where id_materia = ? and id_docente = ?";
+            try {
+                preparedStatement = con.prepareStatement(sql);
+                preparedStatement.setInt(1, Materia);
+                preparedStatement.setInt(2, Docente);
+                resultSet = preparedStatement.executeQuery();
+                  if(resultSet.next()){
+                  
+                 String d="("+resultSet.getString(1)+"/10)--"+resultSet.getString(2);
+                listEvaluation.getItems().add(d);
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                
+            }
       }
       if (event.getSource()==btnLikeEN) {
          // ChangeView("UserRegister",event);
@@ -161,6 +199,11 @@ public class Controller implements Initializable {
       }
       // Botones Searcher
       if (event.getSource()==btnBuscarS) {
+          if (rbMateriaS.isSelected()) {
+              BuscarMateria();
+          }if (rbDocenteS.isSelected()) {
+              BuscarDocente();
+          }
           
       }
       if (event.getSource()==btnSalirS) {
@@ -170,7 +213,11 @@ public class Controller implements Initializable {
           ChangeView("Evaluate", event);
       }
       if (event.getSource()==btnEvaluacionesS) {
-          ChangeView("Evaluation",event);
+          if (!listDocenteS.getItems().isEmpty() || !listMateriaS.getItems().isEmpty()) {
+          E=(String)listDocenteS.getSelectionModel().getSelectedItem();
+           M=(String)listMateriaS.getSelectionModel().getSelectedItem();
+        ChangeView("Evaluation",event);
+     }
       }
       //Botones Teacher Register
       if (event.getSource()==btnRegistrarTR) {
@@ -180,7 +227,13 @@ public class Controller implements Initializable {
                 System.out.println("Error");
         }
       }
-  
+  //Botones User Register
+      if (event.getSource()==btnRegistrarUR) {
+          UserRegister();
+          if (UserID!=0) {
+              ChangeView("Menu", event);
+          }
+      }
       
   }
    //Ingreso de sesion
@@ -216,6 +269,86 @@ public class Controller implements Initializable {
         
         return id;
     }
+    public int getLikes(){
+    int n=0;
+ 
+    return n;
+    }
+    public void UserRegister(){
+    List<Validator> validators = new ArrayList();
+       //El NameValidator no está completo, le falta añadir algunas cosas.
+       validators.add(new NameValidator());
+       validators.add(new EmailRecordValidator());
+       validators.add(new PasswordCareerValidator());
+       Validator comp = new CompositeValidator(validators);
+       String names = txtNombresUR.getText();
+       String surnames = txtApellidosUR.getText();
+       String email = txtEmailUR.getText();
+       //El password hay dos maneras de hacerlo, en Swing se haría de la manera
+       //comentada, pero parece que no funciona igual aquí
+       //String password = new String(txtPassword.getText());
+       String password = txtPasswordUR.getText();
+       String record= txtExpedienteUR.getText();
+       String career = txtCarreraUR.getText();
+       
+       Usuario info = new Usuario(names,surnames,email,career,password,record);
+       List<String> errors = comp.validate(info);
+       if(!errors.isEmpty()){
+           String errordisplay = "";
+            for (String error : errors) {
+               errordisplay = errordisplay + error + "\n";
+            }
+            JOptionPane.showMessageDialog(null, errordisplay,
+                       "Error de Registro", JOptionPane.WARNING_MESSAGE);
+       } else{
+           //Aquí es donde registraría los datos... si supiera como!
+           boolean exists = false;
+           try{
+               
+               String SQL = "INSERT INTO usuarios(expediente, nombre, apellido, contraseña, correo, carrera) VALUES(?,?,?,?,?,?)";
+               String SQL2="SELECT * FROM usuarios";
+               String[] datos1 = new String[6];
+             preparedStatement = con.prepareStatement(SQL2);
+               resultSet = preparedStatement.executeQuery();
+               
+               while(resultSet.next()){
+                   
+                   datos1[0] = resultSet.getString(1);
+                   datos1[4] =resultSet.getString(5);
+                   
+                   if(record.equals(datos1[0]) || datos1[4].equals(email)){
+                       exists = true;
+                   }
+                   
+                   
+               }
+               if(exists){
+                   JOptionPane.showMessageDialog(null, "El expediente está asociado\na otro usuario.",
+                       "Error de Registro", JOptionPane.WARNING_MESSAGE);
+               } else{
+                   preparedStatement  = con.prepareStatement(SQL);
+                  preparedStatement.setInt(1,Integer.parseInt(record));
+                  preparedStatement.setString(2,names);
+                  preparedStatement.setString(3,surnames);
+                  preparedStatement.setString(4,password);
+                  preparedStatement.setString(5,email);
+                  preparedStatement.setString(6,career);
+                   
+                  preparedStatement.executeUpdate();
+                   UserID=Integer.parseInt(record);
+                   
+               }
+               
+           } catch(SQLException ex){
+               System.out.println(ex);
+               //esta madre no sé pq da error
+           } catch(Exception ex){
+               System.out.println(ex);
+           }
+           
+       }
+
+    }
   public void ChangeView(String view, MouseEvent event){
   
                 try {
@@ -232,10 +365,10 @@ public class Controller implements Initializable {
                 }
   }
   private void ListarMaestros(){
-   String[] lista =new String[3];
+   String[] lista =new String[2];
    String docente=" ";
    cbDocenteEV.getItems().clear();
-    String sql = "SELECT  nombre, apellido_paterno, apellido_materno FROM docentes";
+    String sql = "SELECT  nombre, apellido FROM docentes";
     try {
                 preparedStatement = con.prepareStatement(sql);
                 
@@ -245,9 +378,9 @@ public class Controller implements Initializable {
                     
                 lista[1]=resultSet.getString(2);
                
-                lista[2]=resultSet.getString(3);
                 
-                docente=lista[0]+" "+ lista[1]+" "+lista[2];
+                
+                docente=lista[0]+" "+ lista[1];
                    cbDocenteEV.getItems().add(docente);
                 }
             } catch (SQLException ex) {
@@ -321,6 +454,73 @@ public class Controller implements Initializable {
         }
         System.out.println(id);
   return id;
+  }
+     private void BuscarDocente(){
+  
+  String Docente=txtBuscarS.getText();
+       System.out.println(Docente);
+String[] Datos=new String[2];
+  listDocenteS.getItems().clear();
+  if(Docente.isEmpty()) {
+            System.out.println( "No tiene datos");
+          
+            
+        } else {
+        
+            String sql = "SELECT nombre, apellido FROM docentes Where nombre=? OR apellido=? " ;
+            try {
+                
+                preparedStatement = con.prepareStatement(sql);
+                preparedStatement.setString(1, Docente);
+                preparedStatement.setString(2, Docente);
+                resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                        Datos[0]=resultSet.getString(1);
+                 Datos[1]=resultSet.getString(2);
+                 String d=Datos[0]+" "+Datos[1];
+                listDocenteS.getItems().add(d);
+                }
+                
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                
+            }
+        }
+        
+  
+  }
+     private void BuscarMateria(){
+  
+  String materia=txtBuscarS.getText();
+       
+  listMateriaS.getItems().clear();
+
+  if(materia.isEmpty()) {
+            System.out.println( "No tiene datos");
+          
+        } else {
+        
+            String sql = "SELECT nombre_materia FROM materia Where nombre_materia=? " ;
+            try {
+                
+                preparedStatement = con.prepareStatement(sql);
+                preparedStatement.setString(1, materia);
+                
+                resultSet = preparedStatement.executeQuery();
+                if(resultSet.next()){
+                        
+                
+                
+                listMateriaS.getItems().add(resultSet.getString(1));
+                }
+                
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                
+            }
+        }
+        
+  
   }
   private String Guardar(){
   String suc="Error";
@@ -428,6 +628,7 @@ private void ListarMaterias(){
         
         return status;
     }
+ 
  public Controller() {
         con = BaseDeDatos.Conexion();
     }
@@ -469,7 +670,7 @@ private void ListarMaterias(){
            if (!sta) {
                btnLikeEN.setVisible(false);
                btnDislikeEN.setVisible(false);
-               btnVotarEN.setVisible(false);
+              
            }
      }
        //Si RecentActivity esta abierto
@@ -486,7 +687,13 @@ private void ListarMaterias(){
          ListarMaterias();
         
      }
-       
+         if (d[d.length-1].equals("Evaluation.fxml")) {
+         ListarMaestros();
+         ListarMaterias();
+         cbDocenteEV.setValue(E);
+         cbMateriaEV.setValue(M);
+        
+     } 
     }    
     
 }
