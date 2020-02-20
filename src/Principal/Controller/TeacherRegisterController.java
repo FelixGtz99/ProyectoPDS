@@ -5,6 +5,7 @@
  */
 package Principal.Controller;
 
+import Principal.Validators.TeacherValidator;
 import Validators.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class TeacherRegisterController implements Initializable {
         //El NameValidator no está completo, le falta añadir algunas cosas.
         //In fact no estoy seguro que esto tenga algún propósito
         //Nono ya caí en cuenta, este validator es temporal pq me dio flojera hacer el real
-        validators.add(new NameValidator());
+        validators.add(new TeacherValidator());
         Validator comp = new CompositeValidator(validators);
         String names = txtNombres.getText();
         String surname = txtApellidos.getText();
