@@ -2,6 +2,7 @@
 package Principal.Controller;
 
 import Principal.Database.BaseDeDatos;
+import Principal.Validators.TeacherValidator;
 import Validators.CompositeValidator;
 import Validators.EmailRecordValidator;
 import Validators.NameValidator;
@@ -78,6 +79,8 @@ public class Controller implements Initializable {
     @FXML private Button btnLikeRA;
     @FXML private Button btnDislikeRA;
     @FXML private Button btnSalirRA;
+    
+    @FXML private ListView listRA;
     //Elementos Searcher
     @FXML private Button btnSalirS;
     @FXML private Button btnBuscarS;
@@ -232,6 +235,8 @@ public class Controller implements Initializable {
       if (event.getSource()==btnRegistrarTR) {
             if (Register().equals("Success")) {
                 System.out.println("Dato agregado Correctamente");
+                   ChangeView("Menu",event);
+                
             }else{
                 System.out.println("Error");
         }
@@ -295,7 +300,7 @@ public class Controller implements Initializable {
     Evaluacion[1]=resultSet.getInt(2);
     Evaluacion[2]=resultSet.getInt(3);
     Evaluacion[3]=resultSet.getInt(4)+1;
-    String SQL2="UPDATE evaluacion SET likes=? WHERE id_usuario=? and id_docentes=? and id_materia=? ";
+    String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluation=? ";
     preparedStatement=con.prepareStatement(SQL2);
       preparedStatement.setInt(1, Evaluacion[4]);
       preparedStatement.setInt(2, Evaluacion[1]);
@@ -438,6 +443,53 @@ public class Controller implements Initializable {
             }
 
 }
+  public String ConsultarNombreDocente(int n){
+  String nombre=" ";
+   String sql = "SELECT nombre, apellido FROM docentes WHERE id_docente=?";
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, n);
+            resultSet = preparedStatement.executeQuery();
+            
+            nombre=resultSet.getString(1)+ resultSet.getString(2);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+  return nombre;
+  }
+   public String ConsultarNombreMateria(int n){
+  String nombre=" ";
+   String sql = "SELECT nombre_materia FROM materia WHERE id_materia=?";
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, n);
+            resultSet = preparedStatement.executeQuery();
+            nombre=resultSet.getString(1);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+  return nombre;
+  }
+  public void ListarRA(){
+  String sql = "SELECT calificacion, id_docentes, id_materia, comentario FROM evaluacion ORDER BY id_evaluacion DESC";
+            try {
+                preparedStatement = con.prepareStatement(sql);
+                resultSet = preparedStatement.executeQuery();
+                  while(resultSet.next()){
+                      String docente=ConsultarNombreDocente(resultSet.getInt(2));
+                      String materia=ConsultarNombreMateria(resultSet.getInt(3));
+                 String d="("+resultSet.getString(1)+"-/10)-"+docente+"-"+materia+"-"+resultSet.getString(4);
+                listRA.getItems().add(d);
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                
+            }
+  }
   private int ConsultarIDMateria(){
   int id=0;
   String Materia=(String) cbMateriaEV.getSelectionModel().getSelectedItem();
@@ -467,6 +519,60 @@ public class Controller implements Initializable {
             }
         }
          System.out.println(id);
+  return id;
+  }
+     private int ConsultarLastIDD(){
+            int id=0;
+            System.out.println( "No tiene datos");
+            id = 0;
+            String sql = "SELECT Count(*) FROM docentes" ;
+            try {
+                preparedStatement = con.prepareStatement(sql);
+    
+                          
+                resultSet = preparedStatement.executeQuery();
+                
+                if (!resultSet.next()) {
+                    System.out.println("Error");
+                   
+                    
+                } else {
+                    id=resultSet.getInt(1);
+                    System.out.println("Insercion completa");
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                id = 0;
+            
+        }
+     
+  return id;
+  }
+       private int ConsultarLastIDEvaluation(){
+            int id=0;
+            System.out.println( "No tiene datos");
+            id = 0;
+            String sql = "SELECT Count(*) FROM evaluacion" ;
+            try {
+                preparedStatement = con.prepareStatement(sql);
+    
+                          
+                resultSet = preparedStatement.executeQuery();
+                
+                if (!resultSet.next()) {
+                    System.out.println("Error");
+                   
+                    
+                } else {
+                    id=resultSet.getInt(1);
+                    System.out.println("Insercion completa");
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                id = 0;
+            
+        }
+     
   return id;
   }
    private int ConsultarIDDocente(){
@@ -575,6 +681,7 @@ String[] Datos=new String[2];
   String suc="Error";
   int idMateria=ConsultarIDMateria();
   int idDocente=ConsultarIDDocente();
+  int idEvaluacion=ConsultarLastIDEvaluation();
   String comentario=txtComentarioEV.getText();
   int cali=(int)sliCalifEV.getValue();
   
@@ -588,14 +695,16 @@ String[] Datos=new String[2];
                 resultSet = preparedStatement.executeQuery();
                 
                 if (!resultSet.next()) {
-                     String sql2 = "INSERT INTO public.evaluacion(id_usuario, id_docentes, id_materia, calificacion, comentario, likes, dislikes) VALUES (?, ?, ?, ?, ?, 0, 0)";
+                     String sql2 = "INSERT INTO public.evaluacion(id_usuario, id_docentes, id_materia, calificacion, comentario, likes, dislikes, id_evaluacion) VALUES (?, ?, ?, ?, ?, 0, 0,?)";
             try {
+               
                 preparedStatement = con.prepareStatement(sql2);
                  preparedStatement.setInt(1, UserID);
                 preparedStatement.setInt(2, idDocente);
                 preparedStatement.setInt(3, idMateria);
                 preparedStatement.setInt(4, cali);
                  preparedStatement.setString(5, comentario);
+                  preparedStatement.setInt(6, idEvaluacion);
                 resultSet = preparedStatement.executeQuery();
               //  System.out.println(resultSet);
             
@@ -643,29 +752,43 @@ private void ListarMaterias(){
 
 }
  private String Register() {
-        String status = "Success";
-        String nom = txtNombresTR.getText();
+        String status=""; 
+     List<Validator> validators = new ArrayList();
+        //El NameValidator no está completo, le falta añadir algunas cosas.
+        //In fact no estoy seguro que esto tenga algún propósito
+        //Nono ya caí en cuenta, este validator es temporal pq me dio flojera hacer el real
+        validators.add(new TeacherValidator());
+        Validator comp = new CompositeValidator(validators);
+        String nom= txtNombresTR.getText();
         String Ape = txtApellidosTR.getText();
-           String Alias = txtAliasTR.getText();
-           System.out.println("Entro register");
-        if(nom.isEmpty() || Ape.isEmpty() || Alias.isEmpty()) {
-            System.out.println( "No tiene datos");
+        String Alias = txtAliasTR.getText();
+        Usuario info = new Usuario(nom,Ape,Alias);
+        List<String> errors = comp.validate(info);
+        if(!errors.isEmpty()){
+           String errordisplay = "";
+            for (String error : errors) {
+               errordisplay = errordisplay + error + "\n";
+            }
+            JOptionPane.showMessageDialog(null, errordisplay,
+                       "Error de Registro", JOptionPane.WARNING_MESSAGE);
+          
+      
             status = "Error";
         } else {
+            status = "Success";
             //query
             System.out.println("");
             //Error de consistencia en la base de datos te pide dos apellidos pero en el prototipado te pide los dos apellidos juntos
-            String[] apellidos=Ape.split(" ");
-         int id=((int) (Math.random() * 1000 + 100));
+           
+         int id=ConsultarLastIDD()+1;
             //Cometimos un error al crear la base de datos asi que asigne un valor aleatrio al id de docente al no ser auto incrmento 
-            String sql = "INSERT INTO public.docentes(id_docente, nombre, apellido_paterno, apellido_materno, alias) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO public.docentes(id_docente, nombre, apellido, alias) VALUES (?, ?, ?, ?)";
             try {
                 preparedStatement = con.prepareStatement(sql);
                  preparedStatement.setInt(1, id);
                 preparedStatement.setString(2, nom);
-                preparedStatement.setString(3, apellidos[0]);
-                preparedStatement.setString(4, apellidos[1]);
-                 preparedStatement.setString(5, Alias);
+                preparedStatement.setString(3, Ape);
+                 preparedStatement.setString(4, Alias);
                 resultSet = preparedStatement.executeQuery();
               //  System.out.println(resultSet);
             
@@ -724,11 +847,13 @@ private void ListarMaterias(){
      }
        //Si RecentActivity esta abierto
          if (d[d.length-1].equals("RecentActivity.fxml")) {
+            
            if (!sta) {
                btnLikeRA.setVisible(false);
                btnDislikeRA.setVisible(false);
                
            }
+            ListarRA();
      }
        //Si evaluate esta abierto
      if (d[d.length-1].equals("Evaluate.fxml")) {

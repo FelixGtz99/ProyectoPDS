@@ -29,7 +29,7 @@
          <children>
             <Button fx:id="btnLikeRA" layoutX="321.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="86.0" text="Me gusta" />
             <Button fx:id="btnDislikeRA" layoutX="321.0" layoutY="121.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" text="No me gusta" />
-            <ListView layoutX="28.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listRA" layoutX="28.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </Pane>
       <Button fx:id="btnSalirRA" layoutX="375.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="48.0" prefWidth="92.0" stylesheets="@../Estilos.css" text="Salir" />

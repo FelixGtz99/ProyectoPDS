@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class TeacherValidator implements Validator<Usuario> {
    
-   @Override
+ @Override
    public List<String> validate(Usuario info){
       List<String> errors = new ArrayList();
       String name = info.getName();
