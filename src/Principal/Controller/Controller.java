@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -114,11 +116,11 @@ public class Controller implements Initializable {
           
       }
       if (event.getSource()==btnSalirAM) {
-         // ChangeView("UserRegister",event);
+       ChangeView("Menu",event); 
       }
       //Botones Evaluate
       if (event.getSource()==btnSalirEV) {
-         // ChangeView("UserRegister",event);
+      ChangeView("Menu",event); 
       }
       if (event.getSource()==btnEnviarEV) {
           String Result=Guardar();
@@ -135,7 +137,7 @@ public class Controller implements Initializable {
       if (event.getSource()==btnVerEN) {
          int Materia=ConsultarIDMateria();
          int Docente=ConsultarIDDocente();
-           String sql = "SELECT calificacion, comentario FROM usuarios Where id_materia = ? and id_docente = ?";
+           String sql = "SELECT calificacion, comentario FROM evaluacion Where id_materia = ? and id_docentes = ?";
             try {
                 preparedStatement = con.prepareStatement(sql);
                 preparedStatement.setInt(1, Materia);
@@ -143,7 +145,7 @@ public class Controller implements Initializable {
                 resultSet = preparedStatement.executeQuery();
                   if(resultSet.next()){
                   
-                 String d="("+resultSet.getString(1)+"/10)--"+resultSet.getString(2);
+                 String d="("+resultSet.getString(1)+"-/10)-"+resultSet.getString(2);
                 listEvaluation.getItems().add(d);
                 }
             } catch (SQLException ex) {
@@ -152,10 +154,16 @@ public class Controller implements Initializable {
             }
       }
       if (event.getSource()==btnLikeEN) {
-         // ChangeView("UserRegister",event);
+          try {
+              // ChangeView("UserRegister",event);
+              EvaluationLikes();
+          } catch (SQLException ex) {
+              Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+          }
       }
       if (event.getSource()==btnDislikeEN) {
          // ChangeView("UserRegister",event);
+         EvaluationDislike();
       }
       //Botones Login
       if (event.getSource()==btnIngresarL) {
@@ -189,13 +197,13 @@ public class Controller implements Initializable {
       }
       //Botones Recent Activity
       if (event.getSource()==btnLikeRA) {
-          
+          RALike();
       }
       if (event.getSource()==btnDislikeRA) {
-          
+          RADislike();
       }
       if (event.getSource()==btnSalirRA) {
-          
+          ChangeView("Menu",event); 
       }
       // Botones Searcher
       if (event.getSource()==btnBuscarS) {
@@ -207,6 +215,7 @@ public class Controller implements Initializable {
           
       }
       if (event.getSource()==btnSalirS) {
+          ChangeView("Menu",event);
           
       }
       if (event.getSource()==btnEvaluarS) {
@@ -269,11 +278,51 @@ public class Controller implements Initializable {
         
         return id;
     }
-    public int getLikes(){
-    int n=0;
- 
-    return n;
+    public void EvaluationLikes() throws SQLException{
+        //Se puede hacer mejor xd
+        String E=(String) listEvaluation.getSelectionModel().getSelectedItem();
+        String[] Datos=E.split("-");
+        
+        int[] Evaluacion=new int[4];
+    String SQL="SELECT id_usuario, id_docentes, id_materia, likes FROM evaluacion WHERE calificacion=? and comentario=?";
+    preparedStatement=con.prepareStatement(SQL);
+    preparedStatement.setDouble(1,Double.parseDouble( Datos[0]));
+    preparedStatement.setString(2, Datos[1]);
+    resultSet=preparedStatement.executeQuery();
+    
+    if(resultSet.next()){
+    Evaluacion[0]=resultSet.getInt(1);
+    Evaluacion[1]=resultSet.getInt(2);
+    Evaluacion[2]=resultSet.getInt(3);
+    Evaluacion[3]=resultSet.getInt(4)+1;
+    String SQL2="UPDATE evaluacion SET likes=? WHERE id_usuario=? and id_docentes=? and id_materia=? ";
+    preparedStatement=con.prepareStatement(SQL2);
+      preparedStatement.setInt(1, Evaluacion[4]);
+      preparedStatement.setInt(2, Evaluacion[1]);
+      preparedStatement.setInt(3, Evaluacion[2]);
+      preparedStatement.setInt(4, Evaluacion[3]);
+       
+     resultSet=preparedStatement.executeQuery();
+      
     }
+    }
+      public void EvaluationDislike(){
+       
+      
+    
+    }
+       public void RADislike(){
+       
+      
+    
+    }
+       public void RALike(){
+       
+      
+    
+    }
+      
+   
     public void UserRegister(){
     List<Validator> validators = new ArrayList();
        //El NameValidator no está completo, le falta añadir algunas cosas.
@@ -431,12 +480,12 @@ public class Controller implements Initializable {
             id = 0;
         } else {
             //query
-            String sql = "SELECT id_docente FROM docentes Where nombre= ? and apellido_paterno=? and apellido_materno=? " ;
+            String sql = "SELECT id_docente FROM docentes Where nombre= ? and apellido=? " ;
             try {
                 preparedStatement = con.prepareStatement(sql);
                 preparedStatement.setString(1, datos[0]);
                 preparedStatement.setString(2, datos[1]);
-                preparedStatement.setString(3, datos[2]);               
+                          
                 resultSet = preparedStatement.executeQuery();
                 
                 if (!resultSet.next()) {

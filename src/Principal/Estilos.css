@@ -135,6 +135,6 @@
 }
 .text-field {
   -fx-border-color: grey;
-
+-fx-text-fill:  grey;
   -fx-background-color: transparent;
 }
