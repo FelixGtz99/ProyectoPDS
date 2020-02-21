@@ -2,6 +2,7 @@
 package Principal.Controller;
 
 import Principal.Database.BaseDeDatos;
+import Principal.Validators.TeacherValidator;
 import Validators.CompositeValidator;
 import Validators.EmailRecordValidator;
 import Validators.NameValidator;
@@ -643,15 +644,30 @@ private void ListarMaterias(){
 
 }
  private String Register() {
-        String status = "Success";
-        String nom = txtNombresTR.getText();
+     String status=""; 
+     List<Validator> validators = new ArrayList();
+        //El NameValidator no está completo, le falta añadir algunas cosas.
+        //In fact no estoy seguro que esto tenga algún propósito
+        //Nono ya caí en cuenta, este validator es temporal pq me dio flojera hacer el real
+        validators.add(new TeacherValidator());
+        Validator comp = new CompositeValidator(validators);
+        String nom= txtNombresTR.getText();
         String Ape = txtApellidosTR.getText();
-           String Alias = txtAliasTR.getText();
-           System.out.println("Entro register");
-        if(nom.isEmpty() || Ape.isEmpty() || Alias.isEmpty()) {
-            System.out.println( "No tiene datos");
+        String Alias = txtAliasTR.getText();
+        Usuario info = new Usuario(nom,Ape,Alias);
+        List<String> errors = comp.validate(info);
+        if(!errors.isEmpty()){
+           String errordisplay = "";
+            for (String error : errors) {
+               errordisplay = errordisplay + error + "\n";
+            }
+            JOptionPane.showMessageDialog(null, errordisplay,
+                       "Error de Registro", JOptionPane.WARNING_MESSAGE);
+          
+      
             status = "Error";
         } else {
+            status = "Success";
             //query
             System.out.println("");
             //Error de consistencia en la base de datos te pide dos apellidos pero en el prototipado te pide los dos apellidos juntos
