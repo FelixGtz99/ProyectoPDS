@@ -24,7 +24,7 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnIngresarRA" layoutX="184.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="48.0" prefWidth="92.0" stylesheets="@../Estilos.css" text="Ingresar" />
+     
       <Pane layoutX="50.0" layoutY="118.0" prefHeight="361.0" prefWidth="417.0">
          <children>
             <Button fx:id="btnLikeRA" layoutX="321.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="86.0" text="Me gusta" />

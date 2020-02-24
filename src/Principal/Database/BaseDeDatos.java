@@ -15,13 +15,20 @@ import java.sql.DriverManager;
 public class BaseDeDatos {
     
    static  public String DRIVER = "org.postgresql.Driver";
-    static public String DBNAME   = "df7nof0rr08vt4";
-    static public String HOSTNAME = "ec2-52-203-160-194.compute-1.amazonaws.com";
+    //static public String DBNAME   = "df7nof0rr08vt4";
+     //static public String DBNAME   = "df7nof0rr08vt4";
+    //static public String HOSTNAME = "ec2-52-203-160-194.compute-1.amazonaws.com";
+   //static  public String PORT="5432";
+   // static public String URL="jdbc:postgresql://"+HOSTNAME+":"+PORT+"/"+DBNAME;
+   //static public String USERNAME = "vhrezzjpiqdvwi";
+   // static public String PASSWORD = "f6605749682aa84f7c72919c4af459b609a1d0c9c6e788b2480f1f98fdde5265";
+    
+     static public String DBNAME   = "SEM";
+    static public String HOSTNAME = "localhost";
    static  public String PORT="5432";
     static public String URL="jdbc:postgresql://"+HOSTNAME+":"+PORT+"/"+DBNAME;
-   static public String USERNAME = "vhrezzjpiqdvwi";
-    static public String PASSWORD = "f6605749682aa84f7c72919c4af459b609a1d0c9c6e788b2480f1f98fdde5265";
-    
+   static public String USERNAME = "AdminDB";
+    static public String PASSWORD = "1234";
    // public abstract boolean ConnectDB();
     public static Connection Conexion(){
         Connection cn=null;
