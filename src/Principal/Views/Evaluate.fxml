@@ -30,7 +30,7 @@
       <TextArea fx:id="txtComentarioEV" layoutX="115.0" layoutY="313.0" prefHeight="140.0" prefWidth="297.0" />
       <Label layoutX="128.0" layoutY="282.0" text="Comentario" textFill="#fcfcfc" />
       <Button fx:id="btnEnviarEV" layoutX="230.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Enviar" />
-      <Button fx:id="btnSalirEV" layoutX="443.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnSalirEV" layoutX="443.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Regresar" />
       <Slider fx:id="sliCalifEV" blockIncrement="1.0" layoutX="128.0" layoutY="465.0" majorTickUnit="1.0" max="10.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" styleClass="jfx-slider" />
    </children>
 </AnchorPane>

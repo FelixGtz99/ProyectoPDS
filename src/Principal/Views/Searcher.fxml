@@ -48,6 +48,6 @@
       </Pane>
       <Button fx:id="btnEvaluacionesS" layoutX="185.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="116.0" stylesheets="@../Estilos.css" text="Ver Evaluaciones"  onMouseClicked="#ButtonAction"/>
       <Button fx:id="btnEvaluarS" layoutX="335.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Evaluar"  onMouseClicked="#ButtonAction" />
-      <Button fx:id="btnSalirS" layoutX="519.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Salir" onMouseClicked="#ButtonAction" />
+      <Button fx:id="btnSalirS" layoutX="519.0" layoutY="595.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Regresar" onMouseClicked="#ButtonAction" />
    </children>
 </AnchorPane>

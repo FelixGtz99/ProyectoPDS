@@ -35,6 +35,6 @@
             <TextField fx:id="txtAliasTR" layoutX="63.0" layoutY="161.0" prefHeight="27.0" prefWidth="188.0" />
          </children>
       </Pane>
-      <Button fx:id="btnSalirTR" layoutX="288.0" layoutY="398.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="136.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnSalirTR" layoutX="288.0" layoutY="398.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="136.0" stylesheets="@../Estilos.css" text="Regresar" />
    </children>
 </AnchorPane>

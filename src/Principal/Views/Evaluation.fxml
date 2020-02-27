@@ -29,7 +29,7 @@
       <ComboBox fx:id="cbDocenteEV" layoutX="90.0" layoutY="116.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" />
       <ComboBox fx:id="cbMateriaEV" layoutX="88.0" layoutY="157.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" />
     
-      <Button fx:id="btnSalirEN" layoutX="375.0" layoutY="548.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="15.0" prefWidth="90.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnSalirEN" layoutX="375.0" layoutY="548.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="15.0" prefWidth="90.0" stylesheets="@../Estilos.css" text="Regresar" />
       <ListView fx:id="listEvaluation" layoutX="73.0" layoutY="252.0" prefHeight="200.0" prefWidth="200.0" />
      
    </children>

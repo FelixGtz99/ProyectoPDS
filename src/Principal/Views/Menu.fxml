@@ -42,6 +42,6 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="btnSalirMenu" layoutX="360.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="112.0" stylesheets="@../Estilos.css" text="Salir" />
+    
    </children>
 </AnchorPane>

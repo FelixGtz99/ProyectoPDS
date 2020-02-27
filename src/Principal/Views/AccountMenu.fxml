@@ -25,6 +25,6 @@
       <Button fx:id="btnRegistrarAM" layoutX="41.0" layoutY="176.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Registrar" />
       <Button fx:id="btnIngresarAM" layoutX="41.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Ingresar" />
       <Button fx:id="btnCerrarAM" layoutX="41.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Cerrar Sesión" />
-      <Button fx:id="btnSalirAM" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Salir" />
+      <Button fx:id="btnSalirAM" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Regresar" />
    </children>
 </AnchorPane>

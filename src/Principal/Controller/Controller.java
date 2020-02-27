@@ -28,7 +28,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -49,6 +51,9 @@ public class Controller implements Initializable {
     static int UserID=0;
     static int sID=0;
     static String E,M;
+    static String votosL="123141";
+    static String votosD=" ";
+    static int[] Likes;
     //Elementos AccountMenu
     @FXML private Button btnRegistrarAM;
     @FXML private Button btnIngresarAM;
@@ -165,8 +170,7 @@ public class Controller implements Initializable {
           try {
               // ChangeView("UserRegister",event);
               EvaluationLikes();
-              btnLikeEN.setVisible(false);
-              btnDislikeRA.setVisible(false);
+             
           } catch (SQLException ex) {
               Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -187,6 +191,10 @@ public class Controller implements Initializable {
           if (UserID!=0) {
               
               sta=true;
+                Alert Usuario = new Alert(Alert.AlertType.INFORMATION, "Ingresaste con exito", ButtonType.OK);
+                Usuario.setTitle("Ingreso");
+                
+                Usuario.showAndWait();
               ChangeView("Menu",event); 
             
             
@@ -203,11 +211,7 @@ public class Controller implements Initializable {
       if (event.getSource()==btnCuentaMenu) {
           ChangeView("AccountMenu",event);
       }
-            if (event.getSource()==btnSalirMenu) {
-       Node node = (Node) event.getSource();
-                    Stage stage = (Stage) node.getScene().getWindow();
-                    stage.close();
-      }
+            
       if (event.getSource()==btnRDMenu) {
           ChangeView("TeacherRegister",event);
       }
@@ -270,7 +274,10 @@ public class Controller implements Initializable {
             if (Register().equals("Success")) {
                 System.out.println("Dato agregado Correctamente");
                    ChangeView("Menu",event);
+                  Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Maestro Registrado Correctamente", ButtonType.OK);
+                Mensaje.setTitle("Maestro");
                 
+                Mensaje.showAndWait();
             }else{
                 System.out.println("Error");
         }
@@ -329,7 +336,7 @@ public class Controller implements Initializable {
         //
         String E=(String) listEvaluation.getSelectionModel().getSelectedItem();
         String[] Datos=E.split("_");
-        int id=ConsultarIDEvaluacion(Datos[2], Double.parseDouble(Datos[1]));
+        int id=ConsultarIDEvaluacion(Datos[3], Double.parseDouble(Datos[1]));
         System.out.println(id);
         int likes=0;
     String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
@@ -337,6 +344,7 @@ public class Controller implements Initializable {
     
     preparedStatement.setInt(1,id);
     resultSet=preparedStatement.executeQuery();
+    listEvaluation.getSelectionModel().selectNext();
     if(resultSet.next()){
     likes= (resultSet.getInt(1))+1;
     String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
@@ -344,6 +352,7 @@ public class Controller implements Initializable {
       preparedStatement.setInt(1, likes);
       preparedStatement.setInt(2, id);
      resultSet=preparedStatement.executeQuery();
+     
     }
     }
    public void RALikes() throws SQLException{
@@ -359,7 +368,9 @@ public class Controller implements Initializable {
     
     preparedStatement.setInt(1,id);
     resultSet=preparedStatement.executeQuery();
+    listRA.getSelectionModel().selectNext();
     if(resultSet.next()){
+        
     likes= (resultSet.getInt(1))+1;
     String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
     preparedStatement=con.prepareStatement(SQL2);
@@ -377,11 +388,13 @@ public class Controller implements Initializable {
         System.out.println(id);
         int likes=0;
     String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
+    listRA.getSelectionModel().selectNext();
     preparedStatement=con.prepareStatement(SQL);
     
     preparedStatement.setInt(1,id);
     resultSet=preparedStatement.executeQuery();
     if(resultSet.next()){
+        
     likes= (resultSet.getInt(1))+1;
     String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
     preparedStatement=con.prepareStatement(SQL2);
@@ -399,6 +412,7 @@ public class Controller implements Initializable {
         System.out.println(id);
         int likes=0;
     String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
+    listEvaluation.getSelectionModel().selectNext();
     preparedStatement=con.prepareStatement(SQL);
     
     preparedStatement.setInt(1,id);
@@ -474,6 +488,10 @@ public class Controller implements Initializable {
                    
                   preparedStatement.executeUpdate();
                    UserID=Integer.parseInt(record);
+                                     Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Usuario Registrado Correctamente", ButtonType.OK);
+                Mensaje.setTitle("Usuario");
+                
+                Mensaje.showAndWait();
                    
                }
                
@@ -571,6 +589,7 @@ public class Controller implements Initializable {
    //Retorna ID Evaluacion
    public int ConsultarIDEvaluacion(String Comentario, Double Calif){
    int id=0;
+  
    String SQL="SELECT id_evaluacion FROM evaluacion WHERE comentario=? and calificacion=?";
         try {
             preparedStatement=con.prepareStatement(SQL);
@@ -578,7 +597,9 @@ public class Controller implements Initializable {
             preparedStatement.setDouble(2, Calif);
             resultSet=preparedStatement.executeQuery();
             if (resultSet.next()) {
+             
                    id=resultSet.getInt(1); 
+                
             }else{
                 System.out.println("Fallo");
             }
@@ -593,7 +614,7 @@ public class Controller implements Initializable {
    //Muestra lista en Recent Activity
   public void ListarRA(){
     
-  String sql = "SELECT calificacion, id_docentes, id_materia, comentario FROM evaluacion  ";
+  String sql = "SELECT calificacion, id_docentes, id_materia, comentario FROM evaluacion ORDER BY id_evaluacion ";
             try {
                   String[] Maestros= ObtenerMaestros();
                   String [] Materias= ObtenerMaterias();
@@ -771,7 +792,7 @@ String[] Datos=new String[2];
             
         } else {
         
-            String sql = "SELECT nombre, apellido FROM docentes Where nombre LIKE ? OR apellido LIKE ? " ;
+            String sql = "SELECT nombre, apellido FROM docentes Where nombre LIKE ? OR apellido LIKE ? OR alias LIKE ?" ;
             try {
                 
                      preparedStatement = con.prepareStatement(sql);
@@ -1003,8 +1024,8 @@ String[] Datos=new String[2];
                // System.out.println("Selected value : " + newValue);
 cbMateriaEV.getItems().clear();
                
-               int id=ConsultarIDDocente();
-                ListarMateriasM(id);
+               //int id=ConsultarIDDocente();
+                ListarMaterias();
                 
                              }
         });
@@ -1022,12 +1043,12 @@ cbMateriaEV.getItems().clear();
               
                   int Materia=ConsultarIDMateria();
          int Docente=ConsultarIDDocente();
-           String sql = "SELECT calificacion, comentario FROM evaluacion Where id_materia = ? and id_docentes = ?";
-           String SQL="SELECT * FROM materia WHERE id_docente=? and id_materia=?";
+           String sql = "SELECT calificacion, comentario FROM evaluacion Where id_materia = ? and id_docentes = ? ORDER by likes DESC";
+           String SQL="SELECT * FROM materia WHERE id_materia=?";
             try {
                 preparedStatement=con.prepareStatement(SQL);
-                 preparedStatement.setInt(1, Docente);
-                preparedStatement.setInt(2, Materia);
+         
+                preparedStatement.setInt(1, Materia);
                 
                 resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
@@ -1042,9 +1063,8 @@ cbMateriaEV.getItems().clear();
                 listEvaluation.getItems().add(d);
                 }
                    
-                }
-                else{
-                      JOptionPane.showMessageDialog(null, "Materia no disponible con ese maestro");
+                
+              
                 }
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
