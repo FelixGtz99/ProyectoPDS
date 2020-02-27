@@ -69,6 +69,7 @@ public class Controller implements Initializable {
     @FXML private ListView listEvaluation;
     //Elementos Login 
     @FXML private Button btnIngresarL;
+      @FXML private Button btnSalirL;
     @FXML private TextField txtEmailL;
     @FXML private TextField txtPassL;
     //Elementos Menu
@@ -77,6 +78,7 @@ public class Controller implements Initializable {
     @FXML private Button btnREMenu;
     @FXML private Button btnBuscarMenu;
     @FXML private Button btnARMenu;
+    @FXML private Button btnSalirMenu;
     //Elementos Recent Activity
     @FXML private Button btnLikeRA;
     @FXML private Button btnDislikeRA;
@@ -95,6 +97,7 @@ public class Controller implements Initializable {
     @FXML private ListView listDocenteS;
     // Elementos Teacher Register
     @FXML private Button btnRegistrarTR;
+    @FXML private Button btnSalirTR;
     @FXML private TextField txtNombresTR;
     @FXML private TextField txtApellidosTR;
     @FXML private TextField txtAliasTR;
@@ -191,9 +194,19 @@ public class Controller implements Initializable {
              ChangeView("AccountMenu",event);
           }
       }
+            if (event.getSource()==btnSalirL) {
+         
+             ChangeView("Menu",event);
+          
+      }
       //Botones Menu
       if (event.getSource()==btnCuentaMenu) {
           ChangeView("AccountMenu",event);
+      }
+            if (event.getSource()==btnSalirMenu) {
+       Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
       }
       if (event.getSource()==btnRDMenu) {
           ChangeView("TeacherRegister",event);
@@ -211,9 +224,8 @@ public class Controller implements Initializable {
       //Botones Recent Activity
       if (event.getSource()==btnLikeRA) {
           try {
-              btnLikeRA.setVisible(false);
-              btnDislikeRA.setVisible(false);
-              EvaluationLikes();
+              RALikes();
+              
               
           } catch (SQLException ex) {
               Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -221,9 +233,8 @@ public class Controller implements Initializable {
       }
       if (event.getSource()==btnDislikeRA) {
           try {
-              EvaluationLikes();
-              btnLikeRA.setVisible(false);
-              btnDislikeRA.setVisible(false);
+              RADislikes();
+             
           } catch (SQLException ex) {
               Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -263,6 +274,12 @@ public class Controller implements Initializable {
             }else{
                 System.out.println("Error");
         }
+      }
+       if (event.getSource()==btnSalirTR) {
+           
+                   ChangeView("Menu",event);
+                
+        
       }
   //Botones User Register
       if (event.getSource()==btnRegistrarUR) {
@@ -313,6 +330,50 @@ public class Controller implements Initializable {
         String E=(String) listEvaluation.getSelectionModel().getSelectedItem();
         String[] Datos=E.split("_");
         int id=ConsultarIDEvaluacion(Datos[2], Double.parseDouble(Datos[1]));
+        System.out.println(id);
+        int likes=0;
+    String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
+    preparedStatement=con.prepareStatement(SQL);
+    
+    preparedStatement.setInt(1,id);
+    resultSet=preparedStatement.executeQuery();
+    if(resultSet.next()){
+    likes= (resultSet.getInt(1))+1;
+    String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
+    preparedStatement=con.prepareStatement(SQL2);
+      preparedStatement.setInt(1, likes);
+      preparedStatement.setInt(2, id);
+     resultSet=preparedStatement.executeQuery();
+    }
+    }
+   public void RALikes() throws SQLException{
+        //Se puede hacer mejor xd
+        //
+        String E=(String) listRA.getSelectionModel().getSelectedItem();
+        String[] Datos=E.split("_");
+        int id=ConsultarIDEvaluacion(Datos[5], Double.parseDouble(Datos[1]));
+        System.out.println(id);
+        int likes=0;
+    String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
+    preparedStatement=con.prepareStatement(SQL);
+    
+    preparedStatement.setInt(1,id);
+    resultSet=preparedStatement.executeQuery();
+    if(resultSet.next()){
+    likes= (resultSet.getInt(1))+1;
+    String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
+    preparedStatement=con.prepareStatement(SQL2);
+      preparedStatement.setInt(1, likes);
+      preparedStatement.setInt(2, id);
+     resultSet=preparedStatement.executeQuery();
+    }
+    }
+   public void RADislikes() throws SQLException{
+        //Se puede hacer mejor xd
+        //
+        String E=(String) listRA.getSelectionModel().getSelectedItem();
+        String[] Datos=E.split("_");
+        int id=ConsultarIDEvaluacion(Datos[5], Double.parseDouble(Datos[1]));
         System.out.println(id);
         int likes=0;
     String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
@@ -531,21 +592,43 @@ public class Controller implements Initializable {
    
    //Muestra lista en Recent Activity
   public void ListarRA(){
-  String sql = "SELECT calificacion, id_docentes, id_materia, comentario FROM evaluacion ";
+    
+  String sql = "SELECT calificacion, id_docentes, id_materia, comentario FROM evaluacion  ";
             try {
+                  String[] Maestros= ObtenerMaestros();
+                  String [] Materias= ObtenerMaterias();
+                  String m=null;
+                  String d=null;
                 preparedStatement = con.prepareStatement(sql);
                 resultSet = preparedStatement.executeQuery();
                   while(resultSet.next()){
                       double Calif=resultSet.getDouble(1);
                       System.out.println(Calif);
-                      String docente=ConsultarNombreDocente(resultSet.getInt(2));
+                     String docente=Integer.toString(resultSet.getInt(2));
                       System.out.println(docente);
-                      String materia=ConsultarNombreMateria(resultSet.getInt(3));
+                      String materia=Integer.toString(resultSet.getInt(3));
                       System.out.println(materia);
                       String Comentario=resultSet.getString(4);
-                      System.out.println(Comentario);
-                 String d="(_"+Calif+"_/10)_"+docente+"-"+materia+"-"+Comentario;
-                listRA.getItems().add(d);
+                      for (int i = 0; i < Maestros.length; i++) {
+                          String[] maestro=Maestros[i].split("-");
+                          System.out.println(maestro[0]);
+                          if (maestro[0].equals(docente)) {
+                              d=maestro[1]+maestro[2];
+                             
+                          }
+                       
+                      }
+                       for (int i = 0; i < Materias.length; i++) {
+                          String[] Materia=Materias[i].split("-");
+                          
+                          if (Materia[0].equals(materia)) {
+                              m=Materia[1];
+                              System.out.println("Es igual");
+                              
+                          }
+                      }
+                 String D="(_"+Calif+"_/10)_"+d+" _ "+m+" _ "+Comentario;
+                listRA.getItems().add(D);
                 }
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
@@ -641,7 +724,7 @@ public class Controller implements Initializable {
   int id=0;
   String Docente=(String) cbDocenteEV.getSelectionModel().getSelectedItem();
        System.out.println(Docente);
-  String[] datos=Docente.split("  ");
+  String[] datos=Docente.split(" ");
       System.out.println(datos[0]);
        System.out.println(datos[1]);
   if(Docente.isEmpty()) {
@@ -649,11 +732,12 @@ public class Controller implements Initializable {
             id = 0;
         } else {
             //query
-            String sql = "SELECT * FROM docentes WHERE  apellido=? " ;
+            String sql = "SELECT * FROM docentes WHERE  nombre=? and apellido=? " ;
             try {
                 preparedStatement = con.prepareStatement(sql);
              
-                preparedStatement.setString(1, datos[1]);
+                preparedStatement.setString(1, datos[0]);
+                preparedStatement.setString(2, datos[1]);
                 System.out.println(preparedStatement);
                           
                 resultSet = preparedStatement.executeQuery();
@@ -676,8 +760,9 @@ public class Controller implements Initializable {
   }
   private void BuscarDocente(){
   
-  String Docente=txtBuscarS.getText();
+  String Docente="%"+txtBuscarS.getText()+"%";
        System.out.println(Docente);
+       
 String[] Datos=new String[2];
   listDocenteS.getItems().clear();
   if(Docente.isEmpty()) {
@@ -686,14 +771,15 @@ String[] Datos=new String[2];
             
         } else {
         
-            String sql = "SELECT nombre, apellido FROM docentes Where nombre=? OR apellido=? " ;
+            String sql = "SELECT nombre, apellido FROM docentes Where nombre LIKE ? OR apellido LIKE ? " ;
             try {
                 
-                preparedStatement = con.prepareStatement(sql);
+                     preparedStatement = con.prepareStatement(sql);
                 preparedStatement.setString(1, Docente);
                 preparedStatement.setString(2, Docente);
                 resultSet = preparedStatement.executeQuery();
-                if(resultSet.next()){
+               
+                while(resultSet.next()){
                         Datos[0]=resultSet.getString(1);
                  Datos[1]=resultSet.getString(2);
                  String d=Datos[0]+" "+Datos[1];
@@ -710,7 +796,7 @@ String[] Datos=new String[2];
   }
   private void BuscarMateria(){
   
-  String materia=txtBuscarS.getText();
+  String materia="%"+txtBuscarS.getText()+"%";
        
   listMateriaS.getItems().clear();
 
@@ -719,14 +805,14 @@ String[] Datos=new String[2];
           
         } else {
         
-            String sql = "SELECT nombre_materia FROM materia Where nombre_materia=? " ;
+            String sql = "SELECT nombre_materia FROM materia Where nombre_materia LIKE ? " ;
             try {
                 
                 preparedStatement = con.prepareStatement(sql);
                 preparedStatement.setString(1, materia);
                 
                 resultSet = preparedStatement.executeQuery();
-                if(resultSet.next()){
+                while(resultSet.next()){
                         
                 
                 
@@ -815,6 +901,52 @@ String[] Datos=new String[2];
             }
 
 }
+ 
+  private String[] ObtenerMaestros() throws SQLException{
+   int n=0;
+   String SQL="SELECT count(*) FROM docentes";
+  preparedStatement=con.prepareStatement(SQL);
+  resultSet=preparedStatement.executeQuery();
+      if (resultSet.next()) {
+            n=resultSet.getInt(1);
+      }
+    String[] m=new String[n];
+  int i=0;
+  String SQL2="SELECT id_docente, nombre, apellido FROM docentes";
+  preparedStatement=con.prepareStatement(SQL2);
+  resultSet=preparedStatement.executeQuery();
+  while(resultSet.next()){
+      
+      m[i]=resultSet.getInt(1)+"-"+resultSet.getString(2)+"-"+resultSet.getString(3);
+      System.out.println(m[i]);
+      
+      i++;
+  }
+  
+  return m;
+  }
+  private String[] ObtenerMaterias() throws SQLException{
+   int n=0;
+   String SQL="SELECT count(*) FROM materia";
+  preparedStatement=con.prepareStatement(SQL);
+  resultSet=preparedStatement.executeQuery();
+      if (resultSet.next()) {
+            n=resultSet.getInt(1);
+      }
+    String[] m=new String[n];
+  int i=0;
+  String SQL2="SELECT id_materia, nombre_materia FROM materia";
+  preparedStatement=con.prepareStatement(SQL2);
+  resultSet=preparedStatement.executeQuery();
+  while(resultSet.next()){
+      
+      m[i]=resultSet.getInt(1)+"-"+resultSet.getString(2);
+      System.out.println(m[i]);
+      
+      i++;
+  }
+   return m;
+  }
    private String Register() {
         String status=""; 
      List<Validator> validators = new ArrayList();
@@ -864,7 +996,7 @@ String[] Datos=new String[2];
         
         return status;
     }
- public void comboAction() {
+ public void comboActionDocente() {
         cbDocenteEV.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue observable, String oldValue, String newValue) {
@@ -881,7 +1013,7 @@ cbMateriaEV.getItems().clear();
     System.out.println("Selection number: " );
 
     }
-  public void comboAction2() {
+  public void comboActionMateria() {
         cbMateriaEV.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue observable, String oldValue, String newValue) {
@@ -891,15 +1023,28 @@ cbMateriaEV.getItems().clear();
                   int Materia=ConsultarIDMateria();
          int Docente=ConsultarIDDocente();
            String sql = "SELECT calificacion, comentario FROM evaluacion Where id_materia = ? and id_docentes = ?";
+           String SQL="SELECT * FROM materia WHERE id_docente=? and id_materia=?";
             try {
-                preparedStatement = con.prepareStatement(sql);
+                preparedStatement=con.prepareStatement(SQL);
+                 preparedStatement.setInt(1, Docente);
+                preparedStatement.setInt(2, Materia);
+                
+                resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    preparedStatement = con.prepareStatement(sql);
                 preparedStatement.setInt(1, Materia);
                 preparedStatement.setInt(2, Docente);
                 resultSet = preparedStatement.executeQuery();
-                  if(resultSet.next()){
+                 
+                  while(resultSet.next()){
                   
                  String d="(_"+resultSet.getString(1)+"_/10)_"+resultSet.getString(2);
                 listEvaluation.getItems().add(d);
+                }
+                   
+                }
+                else{
+                      JOptionPane.showMessageDialog(null, "Materia no disponible con ese maestro");
                 }
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
@@ -968,10 +1113,12 @@ cbMateriaEV.getItems().clear();
        //Si Menu Esta abierto
      if (d[d.length-1].equals("Menu.fxml")) {
          if (!sta) {
+      
+           
          btnREMenu.setVisible(false);
          btnRDMenu.setVisible(false);   
      }
-      
+     
      }
       //Si Account Menu Esta abierto
        if (d[d.length-1].equals("AccountMenu.fxml")) {
@@ -999,24 +1146,24 @@ cbMateriaEV.getItems().clear();
      }
        //Si RecentActivity esta abierto
          if (d[d.length-1].equals("RecentActivity.fxml")) {
-            
+              ListarRA();
            if (!sta) {
                btnLikeRA.setVisible(false);
                btnDislikeRA.setVisible(false);
                
            }
-            ListarRA();
+          
      }
        //Si evaluate esta abierto
      if (d[d.length-1].equals("Evaluate.fxml")) {
          ListarMaestros();
        
-        comboAction();
+        comboActionDocente();
      }
          if (d[d.length-1].equals("Evaluation.fxml")) {
          ListarMaestros();
-           comboAction();
-         comboAction2();
+           comboActionDocente();
+         comboActionMateria();
          cbDocenteEV.setValue(E);
          cbMateriaEV.setValue(M);
         

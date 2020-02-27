@@ -24,7 +24,7 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrarTR" layoutX="146.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="49.0" prefWidth="159.0" stylesheets="@../Estilos.css" text="Registrar" />
+      <Button fx:id="btnRegistrarTR" layoutX="69.0" layoutY="398.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="136.0" stylesheets="@../Estilos.css" text="Registrar" />
       <Pane layoutX="105.0" layoutY="125.0" prefHeight="219.0" prefWidth="264.0">
          <children>
             <Label layoutX="22.0" layoutY="45.0" text="Nombres" textFill="WHITE" />
@@ -35,5 +35,6 @@
             <TextField fx:id="txtAliasTR" layoutX="63.0" layoutY="161.0" prefHeight="27.0" prefWidth="188.0" />
          </children>
       </Pane>
+      <Button fx:id="btnSalirTR" layoutX="288.0" layoutY="398.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="136.0" stylesheets="@../Estilos.css" text="Salir" />
    </children>
 </AnchorPane>
