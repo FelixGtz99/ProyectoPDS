@@ -2,6 +2,10 @@
 package Principal.Controller;
 
 import Principal.Database.BaseDeDatos;
+import Principal.Evaluacion;
+import Principal.Maestro;
+import Principal.Materia;
+import Principal.User;
 import Principal.Validators.TeacherValidator;
 import Validators.CompositeValidator;
 import Validators.EmailRecordValidator;
@@ -39,6 +43,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
@@ -54,6 +59,11 @@ public class Controller implements Initializable {
     static String votosL="123141";
     static String votosD=" ";
     static int[] Likes;
+     ArrayList<Maestro> Maestros=new ArrayList();
+     ArrayList<User> Usuarios=new ArrayList();
+     ArrayList<Materia> Materias=new ArrayList();
+       ArrayList<Evaluacion> Evaluaciones=new ArrayList();
+     @FXML private Pane Pane;
     //Elementos AccountMenu
     @FXML private Button btnRegistrarAM;
     @FXML private Button btnIngresarAM;
@@ -113,9 +123,11 @@ public class Controller implements Initializable {
      @FXML private TextField txtEmailUR;
      @FXML private TextField txtPasswordUR;
      @FXML private TextField txtExpedienteUR;
-     @FXML private TextField txtCarreraUR;
+     @FXML private ComboBox cbCarreraUR;
  
-  public void ButtonAction(MouseEvent event) {
+ 
+   
+     public void ButtonAction(MouseEvent event) {
       //Botones AccountMenu
       if (event.getSource()==btnRegistrarAM) {
           ChangeView("UserRegister",event);
@@ -298,6 +310,51 @@ public class Controller implements Initializable {
       
   }
    //Ingreso de sesion
+      public void getMaestros() throws SQLException{
+  String SQL ="SELECT * FROM docentes";
+  preparedStatement=con.prepareStatement(SQL);
+  resultSet=preparedStatement.executeQuery();
+  while(resultSet.next()){
+      //int id_docente, String nombre, String apellido, String alias
+  Maestro m= new Maestro(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
+ 
+  Maestros.add(m);
+  
+  }
+  }
+       public void getUsuarios() throws SQLException{
+  String SQL ="SELECT * FROM usuarios";
+  preparedStatement=con.prepareStatement(SQL);
+  resultSet=preparedStatement.executeQuery();
+  while(resultSet.next()){
+      //int expediente, String nombre, String apellido, String contraseña, String correo, String carrera
+ User u= new User(resultSet.getInt(1), resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6));
+   Usuarios.add(u);
+  }
+  
+  }
+   public void getMaterias() throws SQLException{
+  String SQL ="SELECT * FROM materia";
+  preparedStatement=con.prepareStatement(SQL);
+  resultSet=preparedStatement.executeQuery();
+  while(resultSet.next()){
+      //int expediente, String nombre, String apellido, String contraseña, String correo, String carrera
+ Materia m= new Materia(resultSet.getInt(1), resultSet.getInt(2),resultSet.getString(3));
+Materias.add(m);
+  }
+  
+  } 
+   public void getEvaluaciones() throws SQLException{
+  String SQL ="SELECT * FROM evaluacion";
+  preparedStatement=con.prepareStatement(SQL);
+  resultSet=preparedStatement.executeQuery();
+  while(resultSet.next()){
+//int id_usuario, int id_docentes, int id_materia, int id_evaluacion, double calificacion, String likes, String dislkes   
+ Evaluacion e= new Evaluacion(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(2), resultSet.getInt(2),resultSet.getDouble(3),resultSet.getString(3),resultSet.getString(3),resultSet.getString(3));
+Evaluaciones.add(e);
+  }
+  
+  }   
     private int logIn() {
         //Este metodo comprueba que los campos de email y contraseña esten llenos 
         int id = 0;
@@ -441,7 +498,7 @@ public class Controller implements Initializable {
        //String password = new String(txtPassword.getText());
        String password = txtPasswordUR.getText();
        String record= txtExpedienteUR.getText();
-       String career = txtCarreraUR.getText();
+       String career = (String) cbCarreraUR.getSelectionModel().getSelectedItem();
        
        Usuario info = new Usuario(names,surnames,email,career,password,record);
        List<String> errors = comp.validate(info);
@@ -521,28 +578,10 @@ public class Controller implements Initializable {
                 }
   }
   private void ListarMaestros(){
-   String[] lista =new String[2];
-   String docente=" ";
-   cbDocenteEV.getItems().clear();
-    String sql = "SELECT  nombre, apellido FROM docentes";
-    try {
-                preparedStatement = con.prepareStatement(sql);
-                
-                resultSet = preparedStatement.executeQuery();
-                while(resultSet.next()){
-                lista[0]=resultSet.getString(1);
-                    
-                lista[1]=resultSet.getString(2);
-               
-                
-                
-                docente=lista[0]+" "+ lista[1];
-                   cbDocenteEV.getItems().add(docente);
-                }
-            } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
-                
-            }
+      for (int i = 0; i < Maestros.size(); i++) {
+          cbDocenteEV.getItems().add(Maestros.get(i).toString());
+         
+      }
 
 }
   public String ConsultarNombreDocente(int n){
@@ -1023,7 +1062,7 @@ String[] Datos=new String[2];
             public void changed(ObservableValue observable, String oldValue, String newValue) {
                // System.out.println("Selected value : " + newValue);
 cbMateriaEV.getItems().clear();
-               
+   
                //int id=ConsultarIDDocente();
                 ListarMaterias();
                 
@@ -1124,8 +1163,12 @@ cbMateriaEV.getItems().clear();
  @Override
  
     public void initialize(URL url, ResourceBundle rb) {
-     //MetodosEvaluate
-     
+          Pane.setPrefHeight(java.awt.Toolkit.getDefaultToolkit().getScreenSize().height);
+        try {
+            getMaestros();
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
      String dir=url.getFile();
         String[] d=dir.split("/");
       // System.out.println(sta);
@@ -1134,7 +1177,7 @@ cbMateriaEV.getItems().clear();
      if (d[d.length-1].equals("Menu.fxml")) {
          if (!sta) {
       
-           
+         
          btnREMenu.setVisible(false);
          btnRDMenu.setVisible(false);   
      }
@@ -1186,6 +1229,10 @@ cbMateriaEV.getItems().clear();
          comboActionMateria();
          cbDocenteEV.setValue(E);
          cbMateriaEV.setValue(M);
+        
+     } 
+                  if (d[d.length-1].equals("UserRegister.fxml")) {
+         cbCarreraUR.setValue("ingeniería en sistemas de información");
         
      } 
     }    

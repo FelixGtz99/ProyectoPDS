@@ -7,10 +7,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.Controller">
+<AnchorPane id="AnchorPane" prefHeight="755.0" prefWidth="1118.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.Controller.Controller">
    <stylesheets>
       <URL value="@../Estilos.css" />
       <URL value="@../Estilos.css" />
@@ -20,17 +23,32 @@
       <String fx:value="archor" />
    </styleClass>
    <children>
-      <Label alignment="CENTER" layoutX="80.0" layoutY="87.0" prefHeight="23.0" prefWidth="314.0" text="EVALUAR" textFill="WHITE">
-         <font>
-            <Font name="Marlett" size="22.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="cbDocenteEV" layoutX="107.0" layoutY="135.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
-      <ComboBox fx:id="cbMateriaEV" layoutX="107.0" layoutY="199.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
-      <TextArea fx:id="txtComentarioEV" layoutX="115.0" layoutY="313.0" prefHeight="140.0" prefWidth="297.0" />
-      <Label layoutX="128.0" layoutY="282.0" text="Comentario" textFill="#fcfcfc" />
-      <Button fx:id="btnEnviarEV" layoutX="230.0" layoutY="507.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Enviar" />
-      <Button fx:id="btnSalirEV" layoutX="443.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Regresar" />
-      <Slider fx:id="sliCalifEV" blockIncrement="1.0" layoutX="128.0" layoutY="465.0" majorTickUnit="1.0" max="10.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" styleClass="jfx-slider" />
-   </children>
+      
+    <Pane fx:id="Pane" prefHeight="755.0" prefWidth="426.0" style="-fx-background-color: #3f454f;">
+         <children>
+            <Label alignment="CENTER" layoutX="56.0" layoutY="29.0" prefHeight="23.0" prefWidth="314.0" text="Evaluar" textFill="WHITE">
+               <font>
+                  <Font name="Marlett" size="40.0" />
+               </font>
+            </Label>
+      <Button fx:id="btnSalirEV" layoutX="173.0" layoutY="557.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Regresar" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="113.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/evaluarButton.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="541.0" layoutY="79.0" prefHeight="576.0" prefWidth="440.0">
+         <children>
+             <ComboBox fx:id="cbDocenteEV" layoutX="80.0" layoutY="107.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
+      <ComboBox fx:id="cbMateriaEV" layoutX="80.0" layoutY="171.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" stylesheets="@../Estilos.css" />
+      <TextArea fx:id="txtComentarioEV" layoutX="80.0" layoutY="288.0" prefHeight="140.0" prefWidth="297.0" />
+      <Label layoutX="101.0" layoutY="254.0" text="Comentario" textFill="#fcfcfc" />
+      <Button fx:id="btnEnviarEV" layoutX="201.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Enviar" />
+      <Slider fx:id="sliCalifEV" blockIncrement="1.0" layoutX="101.0" layoutY="457.0" majorTickUnit="1.0" max="10.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" styleClass="jfx-slider" />
+    </children>
+      </Pane>
+    
+         </children>
 </AnchorPane>
