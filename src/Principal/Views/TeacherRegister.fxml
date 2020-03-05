@@ -28,7 +28,10 @@
                   <Font name="Marlett" size="40.0" />
                </font>
             </Label>
-            <Button fx:id="btnSalirTR" layoutX="145.0" layoutY="552.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="136.0" stylesheets="@../Estilos.css" text="Regresar" />
+            <Button fx:id="btnSalirTR" layoutX="145.0" layoutY="552.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="136.0" stylesheets="@../Estilos.css" text="Regresar">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/registerButton2.0.PNG" />
@@ -36,16 +39,37 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="695.0" layoutY="121.0" prefHeight="219.0" prefWidth="264.0">
+      <Pane layoutX="695.0" layoutY="121.0" prefHeight="306.0" prefWidth="306.0">
          <children>
-            <Label layoutX="22.0" layoutY="45.0" text="Nombres" textFill="WHITE" />
-            <TextField fx:id="txtNombresTR" layoutX="63.0" layoutY="68.0" prefHeight="27.0" prefWidth="188.0" styleClass="text-input" stylesheets="@../Estilos.css" />
-            <Label layoutX="22.0" layoutY="95.0" text="Apellidos" textFill="WHITE" />
-            <TextField fx:id="txtApellidosTR" layoutX="63.0" layoutY="117.0" prefHeight="27.0" prefWidth="188.0" />
-            <Label layoutX="22.0" layoutY="144.0" text="Alias" textFill="WHITE" />
-            <TextField fx:id="txtAliasTR" layoutX="63.0" layoutY="161.0" prefHeight="27.0" prefWidth="188.0" />
+            <Label layoutX="22.0" layoutY="41.0" text="Nombres" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="txtNombresTR" layoutX="63.0" layoutY="68.0" prefHeight="27.0" prefWidth="188.0" styleClass="text-input" stylesheets="@../Estilos.css">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
+            <Label layoutX="22.0" layoutY="109.0" text="Apellidos" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="txtApellidosTR" layoutX="63.0" layoutY="137.0" prefHeight="27.0" prefWidth="188.0">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
+            <Label layoutX="22.0" layoutY="178.0" text="Alias" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="txtAliasTR" layoutX="63.0" layoutY="205.0" prefHeight="27.0" prefWidth="188.0">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
          </children>
       </Pane>
-      <Button fx:id="btnRegistrarTR" layoutX="785.0" layoutY="441.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="136.0" stylesheets="@../Estilos.css" text="Registrar" />
+      <Button fx:id="btnRegistrarTR" layoutX="773.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="136.0" stylesheets="@../Estilos.css" text="Registrar">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
    </children>
 </AnchorPane>

@@ -22,27 +22,27 @@
    <children>
       <Button fx:id="btnCuentaMenu" layoutX="586.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Cuenta">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Button fx:id="btnRDMenu" layoutX="586.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Docente">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Button fx:id="btnREMenu" layoutX="586.0" layoutY="248.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Evaluaciones">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Button fx:id="btnBuscarMenu" layoutX="855.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Buscar">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Button fx:id="btnARMenu" layoutX="855.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Actividad Reciente">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Pane fx:id="Pane" prefHeight="755.0" prefWidth="426.0" style="-fx-background-color: #3f454f;">

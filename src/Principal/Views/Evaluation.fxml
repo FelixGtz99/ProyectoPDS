@@ -30,7 +30,10 @@
                </font>
             </Label>
           
-            <Button fx:id="btnSalirEN" layoutX="155.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="50.0" prefWidth="116.0" stylesheets="@../Estilos.css" text="Regresar" />
+            <Button fx:id="btnSalirEN" layoutX="155.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="50.0" prefWidth="116.0" stylesheets="@../Estilos.css" text="Regresar">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="135.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/verEvaluacionButton.PNG" />
@@ -43,10 +46,16 @@
             <Font name="Marlett" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnLikeEN" layoutX="956.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="Me gusta " />
-      <ComboBox fx:id="cbDocenteEV" layoutX="807.0" layoutY="77.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" />
-      <ComboBox fx:id="cbMateriaEV" layoutX="807.0" layoutY="167.0" prefHeight="25.0" prefWidth="297.0" styleClass="button" />
-      <Button fx:id="btnDislikeEN" layoutX="807.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="No me gusta" />
-      <ListView fx:id="listEvaluation" layoutX="856.0" layoutY="236.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="btnLikeEN" layoutX="956.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="Me gusta ">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <ComboBox fx:id="cbDocenteEV" layoutX="721.0" layoutY="77.0" prefHeight="27.0" prefWidth="350.0" styleClass="button" />
+      <ComboBox fx:id="cbMateriaEV" layoutX="721.0" layoutY="160.0" prefHeight="27.0" prefWidth="350.0" styleClass="button" />
+      <Button fx:id="btnDislikeEN" layoutX="745.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="129.0" stylesheets="@../Estilos.css" text="No me gusta">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <ListView fx:id="listEvaluation" layoutX="706.0" layoutY="240.0" prefHeight="200.0" prefWidth="379.0" />
    </children>
 </AnchorPane>

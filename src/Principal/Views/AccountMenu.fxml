@@ -27,7 +27,10 @@
                   <Font name="Marlett" size="28.0" />
                </font>
             </Label>
-            <Button fx:id="btnSalirAM" layoutX="156.0" layoutY="639.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Regresar" />
+            <Button fx:id="btnSalirAM" layoutX="156.0" layoutY="639.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="114.0" stylesheets="@../Estilos.css" text="Regresar">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="138.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/accountButton.PNG" />
@@ -37,9 +40,18 @@
       </Pane>
       <Pane layoutX="635.0" layoutY="95.0" prefHeight="314.0" prefWidth="314.0">
          <children>
-            <Button fx:id="btnRegistrarAM" layoutX="15.0" layoutY="72.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Registrar" />
-            <Button fx:id="btnIngresarAM" layoutX="15.0" layoutY="142.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Ingresar" />
-            <Button fx:id="btnCerrarAM" layoutX="15.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Cerrar Sesión" />
+            <Button fx:id="btnRegistrarAM" layoutX="15.0" layoutY="72.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Registrar">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="btnIngresarAM" layoutX="15.0" layoutY="142.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Ingresar">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="btnCerrarAM" layoutX="15.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="43.0" prefWidth="275.0" stylesheets="@../Estilos.css" text="Cerrar Sesión">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
          </children>
       </Pane>
     

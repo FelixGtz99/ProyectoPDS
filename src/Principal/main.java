@@ -19,7 +19,7 @@ Parent root=FXMLLoader.load(getClass().getResource("Views/Menu.fxml"));
 Scene scene= new Scene(root);
 stage.setTitle("Sistema de evaluacion de maestros");
 stage.setScene(scene);
-stage.initStyle(StageStyle.UTILITY);
+//stage.initStyle(StageStyle.UTILITY);
 int h =java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 int w =java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 stage.setHeight(h);

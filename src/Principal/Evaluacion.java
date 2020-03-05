@@ -73,4 +73,21 @@ public class Evaluacion {
     int id_usuario, id_docentes, id_materia, id_evaluacion;
     double calificacion;
     String likes, dislkes, Comentario;
+    String dato="("+Double.toString(calificacion)+"/10)"+" "+Comentario;
+
+    public String getComentario() {
+        return Comentario;
+    }
+
+    public void setComentario(String Comentario) {
+        this.Comentario = Comentario;
+    }
+
+    public String getDato() {
+        return dato;
+    }
+
+    public void setDato(String dato) {
+        this.dato = dato;
+    }
 }

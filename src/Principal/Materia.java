@@ -33,6 +33,10 @@ public class Materia {
     public void setNombre_materia(String nombre_materia) {
         this.nombre_materia = nombre_materia;
     }
+    @Override
+    public String toString(){
+    return nombre_materia;
+    }
     private int id_materia, id_docente;
     private String nombre_materia;
 }

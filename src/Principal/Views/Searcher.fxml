@@ -30,7 +30,10 @@
                   <Font name="Marlett" size="40.0" />
                </font>
             </Label>
-            <Button fx:id="btnSalirS" layoutX="134.0" layoutY="679.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Regresar" />
+            <Button fx:id="btnSalirS" layoutX="134.0" layoutY="679.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Regresar">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="113.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/searchButton.PNG" />
@@ -40,24 +43,48 @@
       </Pane>
       <Pane layoutX="559.0" layoutY="343.0" prefHeight="266.0" prefWidth="236.0">
          <children>
-            <Label layoutX="96.0" layoutY="14.0" text="Docente" textFill="WHITE" />
+            <Label layoutX="95.0" layoutY="6.0" text="Docente" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
             <ListView fx:id="listDocenteS" layoutX="18.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </Pane>
       <Pane layoutX="832.0" layoutY="326.0" prefHeight="266.0" prefWidth="236.0">
          <children>
-            <Label layoutX="104.0" layoutY="32.0" text="Materias" textFill="WHITE" />
+            <Label layoutX="104.0" layoutY="22.0" text="Materias" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
             <ListView fx:id="listMateriaS" layoutX="27.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </Pane>
-      <Button fx:id="btnEvaluacionesS" layoutX="703.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="116.0" stylesheets="@../Estilos.css" text="Ver Evaluaciones" />
-      <Button fx:id="btnEvaluarS" layoutX="853.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Evaluar" />
+      <Button fx:id="btnEvaluacionesS" layoutX="656.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="41.0" prefWidth="163.0" stylesheets="@../Estilos.css" text="Ver Evaluaciones">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="btnEvaluarS" layoutX="853.0" layoutY="624.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="41.0" prefWidth="147.0" stylesheets="@../Estilos.css" text="Evaluar">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
       <Pane layoutX="590.0" layoutY="98.0" prefHeight="164.0" prefWidth="410.0">
          <children>
-            <Button fx:id="btnBuscarS" layoutX="281.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Buscar" />
-            <RadioButton fx:id="rbDocenteS" layoutX="67.0" layoutY="123.0" mnemonicParsing="false" text="Docente" textFill="WHITE" />
-            <RadioButton fx:id="rbMateriaS" layoutX="172.0" layoutY="123.0" mnemonicParsing="false" text="Materia" textFill="WHITE" />
-            <TextField fx:id="txtBuscarS" layoutX="106.0" layoutY="57.0" prefHeight="25.0" prefWidth="255.0" />
+            <Button fx:id="btnBuscarS" layoutX="299.0" layoutY="116.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Buscar">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <RadioButton fx:id="rbDocenteS" layoutX="67.0" layoutY="123.0" mnemonicParsing="false" text="Docente" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="rbMateriaS" layoutX="172.0" layoutY="123.0" mnemonicParsing="false" text="Materia" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></RadioButton>
+            <TextField fx:id="txtBuscarS" layoutX="106.0" layoutY="57.0" prefHeight="25.0" prefWidth="255.0">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
          </children>
       </Pane>
    </children>

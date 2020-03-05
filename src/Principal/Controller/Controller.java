@@ -127,7 +127,7 @@ public class Controller implements Initializable {
  
  
    
-     public void ButtonAction(MouseEvent event) {
+     public void ButtonAction(MouseEvent event) throws SQLException {
       //Botones AccountMenu
       if (event.getSource()==btnRegistrarAM) {
           ChangeView("UserRegister",event);
@@ -355,7 +355,8 @@ Evaluaciones.add(e);
   }
   
   }   
-    private int logIn() {
+ 
+   private int logIn() throws SQLException {
         //Este metodo comprueba que los campos de email y contraseña esten llenos 
         int id = 0;
         String email = txtEmailL.getText();
@@ -364,26 +365,18 @@ Evaluaciones.add(e);
             System.out.println( "No tiene datos");
             id = 0;
         } else {
-            //query
-            String sql = "SELECT * FROM usuarios Where correo = ? and contraseña = ?";
-            try {
-                preparedStatement = con.prepareStatement(sql);
-                preparedStatement.setString(1, email);
-                preparedStatement.setString(2, password);
-                resultSet = preparedStatement.executeQuery();
-                
-                if (!resultSet.next()) {
-                    System.out.println("Enter Correct Email/Password");
-                   
+   
+            
+            for (int i = 0; i < Usuarios.size(); i++) {
+                System.out.println(Usuarios.size());
+                if (email.equals(Usuarios.get(i).getCorreo()) && password.equals(Usuarios.get(i).getContraseña())) {
                     
-                } else {
-                    id=resultSet.getInt(1);
-                    System.out.println("Login Successful..Redirecting..");
-                }
-            } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
-                id = 0;
+                    id=Usuarios.get(i).getExpediente();
+                    
+                    System.out.println(id);
+            } 
             }
+           
         }
         
         return id;
@@ -483,7 +476,7 @@ Evaluaciones.add(e);
      resultSet=preparedStatement.executeQuery();
     }
     }
-  public void UserRegister(){
+  public void UserRegister() throws SQLException{
     List<Validator> validators = new ArrayList();
        //El NameValidator no está completo, le falta añadir algunas cosas.
        validators.add(new NameValidator());
@@ -512,31 +505,26 @@ Evaluaciones.add(e);
        } else{
            //Aquí es donde registraría los datos... si supiera como!
            boolean exists = false;
-           try{
+           for (int i = 0; i < Usuarios.size(); i++) {
+            if (record.equals(Usuarios.get(i).getExpediente())) {
+               exists=true;
+           }   
+           }
+           
+                   
+                   
                
-               String SQL = "INSERT INTO usuarios(expediente, nombre, apellido, contraseña, correo, carrera) VALUES(?,?,?,?,?,?)";
-               String SQL2="SELECT * FROM usuarios";
-               String[] datos1 = new String[6];
-             preparedStatement = con.prepareStatement(SQL2);
-               resultSet = preparedStatement.executeQuery();
-               
-               while(resultSet.next()){
-                   
-                   datos1[0] = resultSet.getString(1);
-                   datos1[4] =resultSet.getString(5);
-                   
-                   if(record.equals(datos1[0]) || datos1[4].equals(email)){
-                       exists = true;
-                   }
-                   
-                   
-               }
                if(exists){
                    JOptionPane.showMessageDialog(null, "El expediente está asociado\na otro usuario.",
                        "Error de Registro", JOptionPane.WARNING_MESSAGE);
                } else{
-                   preparedStatement  = con.prepareStatement(SQL);
-                  preparedStatement.setInt(1,Integer.parseInt(record));
+                //int expediente, String nombre, String apellido, String contraseña, String correo, String carrera   
+                  
+                  
+                  String sql="INSERT INTO usuarios(expediente, nombre, apellido, contraseña, correo, carrera) VALUES(?,?,?,?,?,?)";
+     
+           preparedStatement=con.prepareStatement(sql);
+          preparedStatement.setInt(1,Integer.parseInt(record));
                   preparedStatement.setString(2,names);
                   preparedStatement.setString(3,surnames);
                   preparedStatement.setString(4,password);
@@ -544,7 +532,7 @@ Evaluaciones.add(e);
                   preparedStatement.setString(6,career);
                    
                   preparedStatement.executeUpdate();
-                   UserID=Integer.parseInt(record);
+                  UserID=Integer.parseInt(record);
                                      Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Usuario Registrado Correctamente", ButtonType.OK);
                 Mensaje.setTitle("Usuario");
                 
@@ -552,14 +540,9 @@ Evaluaciones.add(e);
                    
                }
                
-           } catch(SQLException ex){
-               System.out.println(ex);
-               //esta madre no sé pq da error
-           } catch(Exception ex){
-               System.out.println(ex);
-           }
+  }
            
-       }
+       
 
     }
   public void ChangeView(String view, MouseEvent event){
@@ -942,23 +925,11 @@ String[] Datos=new String[2];
   return suc;
   }
   private void ListarMaterias(){
-   String materia;
-  
-    String sql = "SELECT  nombre_materia FROM materia";
-    try {
-                preparedStatement = con.prepareStatement(sql);
-                
-                resultSet = preparedStatement.executeQuery();
-                while(resultSet.next()){
-                materia=resultSet.getString(1);
-                    
-             
-                   cbMateriaEV.getItems().add(materia);
-                }
-            } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
-                
-            }
+    for (int i = 0; i < Materias.size(); i++) {
+          cbMateriaEV.getItems().add(Materias.get(i).toString());
+         
+      }
+
 
 }
  
@@ -1056,15 +1027,41 @@ String[] Datos=new String[2];
         
         return status;
     }
+    public int getIdMateria(){
+int n=0;
+     for (int i = 0; i < Materias.size(); i++) {
+         if ( cbMateriaEV.getSelectionModel().getSelectedItem().equals(Materias.get(i).getNombre_materia())) {
+          n=Materias.get(i).getId_materia();
+         }
+
+     }
+    
+return n;
+ }
+     public int getIdDocente(){
+int n=0;
+     for (int i = 0; i < Maestros.size(); i++) {
+         if ( cbDocenteEV.getSelectionModel().getSelectedItem().equals(Maestros.get(i).getNombre()+" "+Maestros.get(i).getApellido())) {
+          n=Maestros.get(i).getId_docente();
+         }
+     }  
+return n;
+ }
+     public void getItemsList(){
+         for (int i = 0; i < Evaluaciones.size(); i++) {
+             if (Evaluaciones.get(i).getId_materia()==getIdMateria() && Evaluaciones.get(i).getId_docentes()==getIdDocente()) {
+                 listEvaluation.getItems().add(Evaluaciones.get(i).getDato());
+             }
+         }
+     }
  public void comboActionDocente() {
         cbDocenteEV.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue observable, String oldValue, String newValue) {
                // System.out.println("Selected value : " + newValue);
-cbMateriaEV.getItems().clear();
-   
+
                //int id=ConsultarIDDocente();
-                ListarMaterias();
+             getItemsList();
                 
                              }
         });
@@ -1073,41 +1070,15 @@ cbMateriaEV.getItems().clear();
     System.out.println("Selection number: " );
 
     }
+
   public void comboActionMateria() {
         cbMateriaEV.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue observable, String oldValue, String newValue) {
-              listEvaluation.getItems().clear();
+             // listEvaluation.getItems().clear();
                // System.out.println("Selected value : " + newValue);
-              
-                  int Materia=ConsultarIDMateria();
-         int Docente=ConsultarIDDocente();
-           String sql = "SELECT calificacion, comentario FROM evaluacion Where id_materia = ? and id_docentes = ? ORDER by likes DESC";
-           String SQL="SELECT * FROM materia WHERE id_materia=?";
-            try {
-                preparedStatement=con.prepareStatement(SQL);
-         
-                preparedStatement.setInt(1, Materia);
-                
-                resultSet = preparedStatement.executeQuery();
-                if (resultSet.next()) {
-                    preparedStatement = con.prepareStatement(sql);
-                preparedStatement.setInt(1, Materia);
-                preparedStatement.setInt(2, Docente);
-                resultSet = preparedStatement.executeQuery();
-                 
-                  while(resultSet.next()){
-                  
-                 String d="(_"+resultSet.getString(1)+"_/10)_"+resultSet.getString(2);
-                listEvaluation.getItems().add(d);
-                }
-                   
-                
-              
-                }
-            } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
-            }
+                       getItemsList();
+               
                              }
         });
     //count number of select actions
@@ -1166,6 +1137,9 @@ cbMateriaEV.getItems().clear();
           Pane.setPrefHeight(java.awt.Toolkit.getDefaultToolkit().getScreenSize().height);
         try {
             getMaestros();
+            getMaterias();
+            getUsuarios();
+            getEvaluaciones();
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1220,11 +1194,13 @@ cbMateriaEV.getItems().clear();
        //Si evaluate esta abierto
      if (d[d.length-1].equals("Evaluate.fxml")) {
          ListarMaestros();
-       
+             ListarMaterias();
         comboActionDocente();
+         comboActionMateria();
      }
          if (d[d.length-1].equals("Evaluation.fxml")) {
          ListarMaestros();
+          ListarMaterias();
            comboActionDocente();
          comboActionMateria();
          cbDocenteEV.setValue(E);
