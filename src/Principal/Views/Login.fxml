@@ -29,7 +29,7 @@
                   <Font name="Marlett" size="40.0" />
                </font>
             </Label>
-            <Button fx:id="btnSalirL" layoutX="137.0" layoutY="569.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" stylesheets="@../Estilos.css" text="Regresar">
+            <Button fx:id="btnSalirL" layoutX="137.0" layoutY="569.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" stylesheets="@../Estilos.css" onMouseClicked="#ButtonAction"text="Regresar">
                <font>
                   <Font size="18.0" />
                </font></Button>

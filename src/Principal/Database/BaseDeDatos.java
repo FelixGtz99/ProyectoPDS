@@ -25,11 +25,11 @@ public class BaseDeDatos {
    //static public String USERNAME = "vhrezzjpiqdvwi";
    // static public String PASSWORD = "f6605749682aa84f7c72919c4af459b609a1d0c9c6e788b2480f1f98fdde5265";
     
-     static public String DBNAME   = "SEM";
+     static public String DBNAME   = "postgres";
     static public String HOSTNAME = "localhost";
    static  public String PORT="5432";
     static public String URL="jdbc:postgresql://"+HOSTNAME+":"+PORT+"/"+DBNAME;
-   static public String USERNAME = "AdminDB";
+   static public String USERNAME = "admin";
     static public String PASSWORD = "1234";
    // public abstract boolean ConnectDB();
     public static Connection Conexion(){
