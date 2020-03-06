@@ -90,4 +90,11 @@ public class Evaluacion {
     public void setDato(String dato) {
         this.dato = dato;
     }
+    @Override
+    public String toString(){
+        if (Comentario==null) {
+      return "("+Double.toString(calificacion)+"/10)"+" ";
+        }
+    return "("+Double.toString(calificacion)+"/10)"+" "+Comentario;
+    }
 }
