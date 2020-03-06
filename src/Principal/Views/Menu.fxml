@@ -20,27 +20,27 @@
       <String fx:value="archor" />
    </styleClass>
    <children>
-      <Button fx:id="btnCuentaMenu" layoutX="586.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Cuenta">
+      <Button fx:id="btnCuentaMenu" layoutX="586.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="48.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Cuenta">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnRDMenu" layoutX="586.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Docente">
+      <Button fx:id="btnRDMenu" layoutX="586.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="48.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Docente">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnREMenu" layoutX="586.0" layoutY="248.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Evaluaciones">
+      <Button fx:id="btnREMenu" layoutX="586.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="48.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Evaluaciones">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnBuscarMenu" layoutX="855.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Buscar">
+      <Button fx:id="btnBuscarMenu" layoutX="855.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="48.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Buscar">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnARMenu" layoutX="855.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="36.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Actividad Reciente">
+      <Button fx:id="btnARMenu" layoutX="855.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="48.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Actividad Reciente">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -52,9 +52,9 @@
                   <Font name="Marlett" size="40.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="151.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="165.0" fitWidth="217.0" layoutX="105.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/homeButton.PNG" />
+                  <Image url="@../../img/c1f6a059-f6c4-45b2-b5be-3191f2cbe7e5.jpg" />
                </image>
             </ImageView>
          </children>

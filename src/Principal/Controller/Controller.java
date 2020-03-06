@@ -7,6 +7,8 @@ import Principal.Maestro;
 import Principal.Materia;
 import Principal.User;
 import Principal.Validators.TeacherValidator;
+import Principal.Votos;
+import Principal.todoDatos;
 import Validators.CompositeValidator;
 import Validators.EmailRecordValidator;
 import Validators.NameValidator;
@@ -33,9 +35,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -57,13 +62,15 @@ public class Controller implements Initializable {
     static int sID=0, idM=0, idD=0;
     
     static String E,M;
-    static String votosL="123141";
-    static String votosD=" ";
+    
     static int[] Likes;
+    ArrayList<Votos> VotosL=new ArrayList<Votos>();
+    ArrayList<Votos> VotosD=new ArrayList<Votos>();
      ArrayList<Maestro> Maestros=new ArrayList();
      ArrayList<User> Usuarios=new ArrayList();
      ArrayList<Materia> Materias=new ArrayList();
        ArrayList<Evaluacion> Evaluaciones=new ArrayList();
+        ArrayList<todoDatos> EvaluacionesT=new ArrayList();
      @FXML private Pane Pane;
     //Elementos AccountMenu
     @FXML private Button btnRegistrarAM;
@@ -125,7 +132,8 @@ public class Controller implements Initializable {
      @FXML private TextField txtPasswordUR;
      @FXML private TextField txtExpedienteUR;
      @FXML private ComboBox cbCarreraUR;
- 
+  @FXML private Hyperlink link;
+    @FXML private CheckBox Check;
  
    
      public void ButtonAction(MouseEvent event) throws SQLException {
@@ -308,8 +316,38 @@ public class Controller implements Initializable {
               ChangeView("Menu", event);
           }
       }
-      
+       if (event.getSource()==link) {
+          Alert alert = new Alert(AlertType.INFORMATION);
+alert.setTitle("Terminos y condiciones");
+alert.setWidth(800);
+
+alert.setContentText("1. Aceptación de los términos" +
+"Al momento de empezar a utilizar cualquiera de los servicios proporcionados por nuestro Sistema de Evaluación de Docentes (\"SEM\"), usted acepta y está sujeto a los siguientes términos y condiciones presentados a continuación (\"Términos del Sistema\")." +
+"Cualquier cambio o funcionalidad que sea agregada al servicio actual en el futuro, también estará sujeta a sus correspondientes términos de servicio. SEM se reservará el derecho de actualizar y cambiar estos términos y condiciones en cualquier momento que se considere pertinente, usted se verá notificado de estos cambios al momento de registrarse en la aplicación. Sin embargo, si usted continúa utilizando el sistema después de una actualización o modificación de los términos del servicio, significa que usted está de acuerdo con los mismos. Le recomendamos revisar periódicamente los términos de servicio para saber si algún cambio en los mismos tendrá un impacto sobre su experiencia en la aplicación." +
+"2. Condiciones para la Creación de una Cuenta " +
+"     2.1. Usted deberá ser mayor de 18 años\n" +
+"      2.2. Usted debe proporcionar su nombre completo de acuerdo con como aparece en su identificación oficial, fecha de nacimiento, una dirección de correo electrónico institucional válida y cualquier otro tipo de información necesaria para completar los campos del formulario solicitado durante el proceso de creación de una cuenta." +
+"     2.3. Usted será responsable de mantener su usuario y contraseña de forma segura. El equipo de desarrollo de SEM no puede y no será responsable por daños o pérdidas ocasionados por no recordar o mantener la seguridad de su usuario y/o contraseña." +
+"     2.4. Usted no podrá usar el servicio para fines ilícitos considerados ilegales, no autorizados o que violen cualquier instancia dentro del marco legal jurídico en la república mexicana." +
+"     2.5. Usted es responsable de toda información o contenido que decida subir a la aplicación. No podrá transmitir o cargar en el sistema cualquier tipo de contenido de naturaleza negativa o destructiva que intente de cualquier forma agredir, insultar, discriminar, y atentar hacia la integridad física o moral de algún docente, de ser así nos veremos obligados a eliminar este contenido malicioso, o bien los usuarios lo harán de esta forma." +
+"     " +
+"     2.6. Cualquier tipo de violación u omisión a los términos y condiciones del sistema SEM serán castigados con sanciones que van desde 2 a 5 años de cárcel o bien una multa federal de $200,000 siguiendo el código penal federal, esto de acuerdo con la Ley Reglamentaria del artículo 27 constitucional según estipula el orden jurídico nacional mexicano." +
+"" +
+"3. Descripción Funcional del Sistema" +
+"    3.1. Usted será capaz de registrar docentes en el sistema." +
+"    3.2. Usted tendrá la opción de elegir si realizar una búsqueda de algún docente o materia." +
+"    3.3. Usted será capaz de realizar evaluaciones a maestros, Se deberá ingresar un texto donde se vea expresada su opinión de forma respetuosa, y posteriormente asignar una calificación para el desempeño del docente que va en escala del 1 al 10." +
+"    3.4. Usted tendrá la posibilidad de calificar las reviews/opiniones de los otros alumnos, pudiendo dar me gusta o no me gusta en estas mismas." +
+"" +
+"" +
+"");
+
+alert.showAndWait();
+              
+         
+      }
   }
+     
    //Ingreso de sesion
       public void getMaestros() throws SQLException{
   String SQL ="SELECT * FROM docentes";
@@ -353,12 +391,36 @@ Materias.add(m);
   while(resultSet.next()){
       //id_usuario, id_docentes, id_materia, calificacion, comentario, id_evaluacion, likes, dislikes
 //int id_usuario, int id_docentes, int id_materia, int id_evaluacion, double calificacion, String likes, String dislkes   
- Evaluacion e= new Evaluacion(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3), resultSet.getInt(6),resultSet.getDouble(4),resultSet.getString(7),resultSet.getString(8),resultSet.getString(5));
+ Evaluacion e= new Evaluacion(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3), resultSet.getInt(8),resultSet.getDouble(4),resultSet.getString(6),resultSet.getString(7),resultSet.getString(5));
 Evaluaciones.add(e);
   }
-  
+
   }   
+   public void getEv(){
  
+       int mae=0;
+       int mat=0;
+       for (int i = 0; i < Evaluaciones.size(); i++) {
+  
+           for (int j = 0; j < Maestros.size(); j++) {
+               if (Evaluaciones.get(i).getId_materia()==Materias.get(j).getId_materia()) {
+                   mat=j;
+               }
+    
+           }
+             for (int j = 0; j < Maestros.size(); j++) {
+               if (Evaluaciones.get(i).getId_docentes()==Maestros.get(j).getId_docente()) {
+                   mae=j;
+               }
+    
+           }
+           String maestro=Maestros.get(mae).toString();
+           String materia=Materias.get(mat).toString();
+           todoDatos t=new todoDatos(Evaluaciones.get(i).getId_evaluacion(),Evaluaciones.get(i).getCalificacion(),Evaluaciones.get(i).getComentario(),materia, maestro);
+           EvaluacionesT.add(t);
+         
+       }
+  }
    private int logIn() throws SQLException {
         //Este metodo comprueba que los campos de email y contraseña esten llenos 
         int id = 0;
@@ -397,7 +459,7 @@ Evaluaciones.add(e);
             }
       }
         if (id!=0) {
-          String likes;
+          int likes;
     String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
     preparedStatement=con.prepareStatement(SQL);
     
@@ -406,88 +468,173 @@ Evaluaciones.add(e);
     //listRA.getSelectionModel().selectNext();
     if(resultSet.next()){
         System.out.println("Entron en el if");
-    likes= (resultSet.getString(1))+UserID;
+    likes= (resultSet.getInt(1))+1;
         System.out.println(likes);
-    String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
+        Votos v=new Votos(UserID, id);
+        VotosL.add(v);
+        for (int i = 0; i < VotosL.size(); i++) {
+            if (!VotosL.get(i).equals(v)) {
+                  String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
     preparedStatement=con.prepareStatement(SQL2);
-      preparedStatement.setString(1, likes);
+      preparedStatement.setInt(1, likes);
       preparedStatement.setInt(2, id);
-     preparedStatement.executeUpdate();
+     preparedStatement.executeUpdate();  
+            }
+            else{
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Ya voto ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
+                
+                Mensaje.showAndWait();
+            }
+        }
+        
+
     }
       }
     }
    public void RALikes() throws SQLException{
         //Se puede hacer mejor xd
         //
-        String E=(String) listRA.getSelectionModel().getSelectedItem();
-        String[] Datos=E.split("_");
-        int id=ConsultarIDEvaluacion(Datos[5], Double.parseDouble(Datos[1]));
-        System.out.println(id);
-        int likes=0;
+        int id=0;
+        Object e= listRA.getSelectionModel().getSelectedItem();
+        System.out.println(e.toString());
+        for (int i = 0; i < Evaluaciones.size(); i++) {
+            System.out.println(Evaluaciones.get(i).toString());
+            if (e.equals(Evaluaciones.get(i).toString())) {
+               id=Evaluaciones.get(i).getId_evaluacion();
+                System.out.println(id);
+            }
+      }
+        if (id!=0) {
+          int likes;
     String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
     preparedStatement=con.prepareStatement(SQL);
     
     preparedStatement.setInt(1,id);
     resultSet=preparedStatement.executeQuery();
-    listRA.getSelectionModel().selectNext();
+    //listRA.getSelectionModel().selectNext();
     if(resultSet.next()){
-        
+        System.out.println("Entron en el if");
     likes= (resultSet.getInt(1))+1;
-    String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
+        System.out.println(likes);
+        Votos v=new Votos(UserID, id);
+        VotosL.add(v);
+        for (int i = 0; i < VotosL.size(); i++) {
+            if (!VotosL.get(i).equals(v)) {
+                  String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
     preparedStatement=con.prepareStatement(SQL2);
       preparedStatement.setInt(1, likes);
       preparedStatement.setInt(2, id);
-     resultSet=preparedStatement.executeQuery();
+     preparedStatement.executeUpdate();  
+            }
+            else{
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Ya voto ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
+                
+                Mensaje.showAndWait();
+            }
+        }
+        
+
     }
+      }
     }
    public void RADislikes() throws SQLException{
-        //Se puede hacer mejor xd
-        //
-        String E=(String) listRA.getSelectionModel().getSelectedItem();
-        String[] Datos=E.split("_");
-        int id=ConsultarIDEvaluacion(Datos[5], Double.parseDouble(Datos[1]));
-        System.out.println(id);
-        int likes=0;
-    String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
-    listRA.getSelectionModel().selectNext();
+         int id=0;
+        Object e= listRA.getSelectionModel().getSelectedItem();
+        System.out.println(e.toString());
+        for (int i = 0; i < Evaluaciones.size(); i++) {
+            System.out.println(Evaluaciones.get(i).toString());
+            if (e.equals(Evaluaciones.get(i).toString())) {
+               id=Evaluaciones.get(i).getId_evaluacion();
+                System.out.println(id);
+            }
+      }
+        if (id!=0) {
+          int likes;
+    String SQL="SELECT dislikes FROM evaluacion WHERE id_evaluacion=?";
     preparedStatement=con.prepareStatement(SQL);
     
     preparedStatement.setInt(1,id);
     resultSet=preparedStatement.executeQuery();
+    //listRA.getSelectionModel().selectNext();
     if(resultSet.next()){
-        
+        System.out.println("Entron en el if");
     likes= (resultSet.getInt(1))+1;
-    String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
+        System.out.println(likes);
+        Votos v=new Votos(UserID, id);
+        VotosD.add(v);
+        for (int i = 0; i < VotosD.size(); i++) {
+            if (!VotosD.get(i).equals(v)) {
+                  String SQL2="UPDATE evaluacion SET dislikes=? WHERE id_evaluacion=? ";
     preparedStatement=con.prepareStatement(SQL2);
       preparedStatement.setInt(1, likes);
       preparedStatement.setInt(2, id);
-     resultSet=preparedStatement.executeQuery();
+     preparedStatement.executeUpdate();  
+            }
+            else{
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Ya voto ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
+                
+                Mensaje.showAndWait();
+            }
+        }
+        
+
     }
+      }
     }
    public void EvaluationDislikes() throws SQLException{
         //Se puede hacer mejor xd
         //
-        String E=(String) listEvaluation.getSelectionModel().getSelectedItem();
-        String[] Datos=E.split("_");
-        int id=ConsultarIDEvaluacion(Datos[2], Double.parseDouble(Datos[1]));
-        System.out.println(id);
-        int likes=0;
-    String SQL="SELECT likes FROM evaluacion WHERE id_evaluacion=?";
-    listEvaluation.getSelectionModel().selectNext();
+         int id=0;
+        Object e= listEvaluation.getSelectionModel().getSelectedItem();
+        System.out.println(e.toString());
+        for (int i = 0; i < Evaluaciones.size(); i++) {
+            System.out.println(Evaluaciones.get(i).toString());
+            if (e.equals(Evaluaciones.get(i).toString())) {
+               id=Evaluaciones.get(i).getId_evaluacion();
+                System.out.println(id);
+            }
+      }
+        if (id!=0) {
+          int likes;
+    String SQL="SELECT dislikes FROM evaluacion WHERE id_evaluacion=?";
     preparedStatement=con.prepareStatement(SQL);
     
     preparedStatement.setInt(1,id);
     resultSet=preparedStatement.executeQuery();
+    //listRA.getSelectionModel().selectNext();
     if(resultSet.next()){
+        System.out.println("Entron en el if");
     likes= (resultSet.getInt(1))+1;
-    String SQL2="UPDATE evaluacion SET likes=? WHERE id_evaluacion=? ";
+        System.out.println(likes);
+        Votos v=new Votos(UserID, id);
+        VotosD.add(v);
+        for (int i = 0; i < VotosD.size(); i++) {
+            if (!VotosD.get(i).equals(v)) {
+                  String SQL2="UPDATE evaluacion SET dislikes=? WHERE id_evaluacion=? ";
     preparedStatement=con.prepareStatement(SQL2);
       preparedStatement.setInt(1, likes);
       preparedStatement.setInt(2, id);
-     resultSet=preparedStatement.executeQuery();
+     preparedStatement.executeUpdate();  
+            }
+            else{
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Ya voto ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
+                
+                Mensaje.showAndWait();
+            }
+        }
+        
+
     }
+      }
     }
   public void UserRegister() throws SQLException{
+      if (Check.isSelected()) {
+          
+      
     List<Validator> validators = new ArrayList();
        //El NameValidator no está completo, le falta añadir algunas cosas.
        validators.add(new NameValidator());
@@ -554,7 +701,12 @@ Evaluaciones.add(e);
   }
            
        
-
+}else{
+            Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Es necesario que acepte terminos y condiciones ", ButtonType.OK);
+                Mensaje.setTitle("Alerta");
+                
+                Mensaje.showAndWait();
+      }
     }
   public void ChangeView(String view, MouseEvent event){
   
@@ -646,48 +798,15 @@ Evaluaciones.add(e);
    
    //Muestra lista en Recent Activity
   public void ListarRA(){
-    
-  String sql = "SELECT calificacion, id_docentes, id_materia, comentario FROM evaluacion ORDER BY id_evaluacion ";
-            try {
-                  String[] Maestros= ObtenerMaestros();
-                  String [] Materias= ObtenerMaterias();
-                  String m=null;
-                  String d=null;
-                preparedStatement = con.prepareStatement(sql);
-                resultSet = preparedStatement.executeQuery();
-                  while(resultSet.next()){
-                      double Calif=resultSet.getDouble(1);
-                      System.out.println(Calif);
-                     String docente=Integer.toString(resultSet.getInt(2));
-                      System.out.println(docente);
-                      String materia=Integer.toString(resultSet.getInt(3));
-                      System.out.println(materia);
-                      String Comentario=resultSet.getString(4);
-                      for (int i = 0; i < Maestros.length; i++) {
-                          String[] maestro=Maestros[i].split("-");
-                          System.out.println(maestro[0]);
-                          if (maestro[0].equals(docente)) {
-                              d=maestro[1]+maestro[2];
-                             
-                          }
-                       
-                      }
-                       for (int i = 0; i < Materias.length; i++) {
-                          String[] Materia=Materias[i].split("-");
-                          
-                          if (Materia[0].equals(materia)) {
-                              m=Materia[1];
-                              System.out.println("Es igual");
-                              
-                          }
-                      }
-                 String D="(_"+Calif+"_/10)_"+d+" _ "+m+" _ "+Comentario;
-                listRA.getItems().add(D);
-                }
-            } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
-                
-            }
+
+          for (int i = 0; i < EvaluacionesT.size(); i++) {
+              listRA.getItems().add(EvaluacionesT.get(i).toString());
+              if (i==4) {
+                  break;
+              }
+ 
+                  }
+             
   }
   private int ConsultarIDMateria(){
  int id=0;
@@ -1012,7 +1131,7 @@ return n;
         int idMateria=ConsultarIDMateria();
          for (int i = 0; i < Evaluaciones.size(); i++) {
                  if (Evaluaciones.get(i).getId_docentes()==idMaestro && Evaluaciones.get(i).getId_materia()==idMateria) {
-        listEvaluation.getItems().add(Evaluaciones.toString().replace("[", "").replace("]", ""));
+        listEvaluation.getItems().add(Evaluaciones.get(i).toString().replace("[", "").replace("]", ""));
                      
                  }
  
@@ -1138,6 +1257,7 @@ return n;
             getMaterias();
             getUsuarios();
             getEvaluaciones();
+            getEv();
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1181,6 +1301,7 @@ return n;
      }
        //Si RecentActivity esta abierto
          if (d[d.length-1].equals("RecentActivity.fxml")) {
+             //
               ListarRA();
            if (!sta) {
                btnLikeRA.setVisible(false);

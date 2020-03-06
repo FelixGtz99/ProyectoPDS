@@ -31,7 +31,7 @@
                   <Font name="Marlett" size="40.0" />
                </font>
             </Label>
-      <Button fx:id="btnSalirEV" layoutX="173.0" layoutY="557.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Regresar">
+      <Button fx:id="btnSalirEV" layoutX="101.0" layoutY="561.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="41.0" prefWidth="196.0" stylesheets="@../Estilos.css" text="Regresar">
                <font>
                   <Font size="18.0" />
                </font></Button>
@@ -42,11 +42,11 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="541.0" layoutY="79.0" prefHeight="627.0" prefWidth="474.0">
+      <Pane layoutX="541.0" layoutY="79.0" prefHeight="669.0" prefWidth="560.0">
          <children>
-             <ComboBox fx:id="cbDocenteEV" layoutX="80.0" layoutY="107.0" prefHeight="27.0" prefWidth="336.0" styleClass="button" stylesheets="@../Estilos.css" />
-      <ComboBox fx:id="cbMateriaEV" layoutX="80.0" layoutY="171.0" prefHeight="27.0" prefWidth="336.0" styleClass="button" stylesheets="@../Estilos.css" />
-      <TextArea fx:id="txtComentarioEV" layoutX="80.0" layoutY="288.0" prefHeight="140.0" prefWidth="297.0">
+             <ComboBox fx:id="cbDocenteEV" layoutX="80.0" layoutY="107.0" prefHeight="27.0" prefWidth="426.0" styleClass="button" stylesheets="@../Estilos.css" />
+      <ComboBox fx:id="cbMateriaEV" layoutX="80.0" layoutY="171.0" prefHeight="27.0" prefWidth="426.0" styleClass="button" stylesheets="@../Estilos.css" />
+      <TextArea fx:id="txtComentarioEV" layoutX="80.0" layoutY="288.0" prefHeight="168.0" prefWidth="419.0">
                <font>
                   <Font size="16.0" />
                </font></TextArea>
@@ -54,11 +54,11 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-      <Button fx:id="btnEnviarEV" layoutX="201.0" layoutY="525.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" stylesheets="@../Estilos.css" text="Enviar">
+      <Button fx:id="btnEnviarEV" layoutX="209.0" layoutY="564.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="41.0" prefWidth="161.0" stylesheets="@../Estilos.css" text="Enviar">
                <font>
                   <Font size="18.0" />
                </font></Button>
-      <Slider fx:id="sliCalifEV" blockIncrement="1.0" layoutX="101.0" layoutY="457.0" majorTickUnit="1.0" max="10.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" styleClass="jfx-slider" />
+      <Slider fx:id="sliCalifEV" blockIncrement="1.0" layoutX="86.0" layoutY="480.0" majorTickUnit="1.0" max="10.0" prefHeight="32.0" prefWidth="410.0" showTickLabels="true" styleClass="jfx-slider" />
     </children>
       </Pane>
     

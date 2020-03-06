@@ -40,25 +40,25 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="615.0" layoutY="91.0" prefHeight="236.0" prefWidth="284.0">
+      <Pane layoutX="610.0" layoutY="159.0" prefHeight="340.0" prefWidth="415.0">
          <children>
-            <Button fx:id="btnIngresarL" layoutX="66.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="0.0" prefWidth="164.0" stylesheets="@../Estilos.css" text="Ingresar">
+            <Button fx:id="btnIngresarL" layoutX="78.0" layoutY="239.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="41.0" prefWidth="259.0" stylesheets="@../Estilos.css" text="Ingresar">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Label layoutX="14.0" prefHeight="43.0" prefWidth="148.0" text="Correo Electronico" textFill="WHITE">
+            <Label layoutX="14.0" prefHeight="43.0" prefWidth="314.0" text="Correo Electronico" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label layoutX="14.0" layoutY="84.0" prefHeight="43.0" prefWidth="148.0" text="Contraseña" textFill="WHITE">
+            <Label layoutX="14.0" layoutY="84.0" prefHeight="43.0" prefWidth="346.0" text="Contraseña" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <TextField fx:id="txtEmailL" layoutX="48.0" layoutY="37.0" prefHeight="27.0" prefWidth="229.0">
+            <TextField fx:id="txtEmailL" layoutX="53.0" layoutY="43.0" prefHeight="41.0" prefWidth="314.0">
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <PasswordField fx:id="txtPassL" layoutX="48.0" layoutY="118.0" prefHeight="27.0" prefWidth="229.0">
+            <PasswordField fx:id="txtPassL" layoutX="48.0" layoutY="127.0" prefHeight="41.0" prefWidth="322.0">
                <font>
                   <Font size="18.0" />
                </font></PasswordField>
