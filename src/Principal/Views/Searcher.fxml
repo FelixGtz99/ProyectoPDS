@@ -30,7 +30,7 @@
                   <Font name="Marlett" size="40.0" />
                </font>
             </Label>
-            <Button fx:id="btnSalirS" layoutX="134.0" layoutY="679.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="27.0" prefWidth="97.0" stylesheets="@../Estilos.css" text="Regresar">
+            <Button fx:id="btnSalirS" layoutX="134.0" layoutY="679.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="35.0" prefWidth="187.0" stylesheets="@../Estilos.css" text="Regresar">
                <font>
                   <Font size="18.0" />
                </font></Button>

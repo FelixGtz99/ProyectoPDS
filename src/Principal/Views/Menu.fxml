@@ -30,7 +30,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnREMenu" layoutX="586.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="48.0" prefWidth="249.0" stylesheets="@../Estilos.css" text="Registrar Evaluaciones">
+      <Button fx:id="btnREMenu" layoutX="586.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#ButtonAction" prefHeight="48.0" prefWidth="273.0" stylesheets="@../Estilos.css" text="Registrar Evaluaciones">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

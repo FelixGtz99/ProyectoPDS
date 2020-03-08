@@ -57,12 +57,11 @@ public class Controller implements Initializable {
     Connection con = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+    static Boolean DarkMode=true;
     static Boolean  sta= false;
     static int UserID=0;
     static int sID=0, idM=0, idD=0;
-    
     static String E,M;
-    
     static int[] Likes;
     ArrayList<Votos> VotosL=new ArrayList<Votos>();
     ArrayList<Votos> VotosD=new ArrayList<Votos>();
@@ -171,7 +170,8 @@ public class Controller implements Initializable {
           try {
               // ChangeView("UserRegister",event);
               EvaluationLikes();
-             
+              btnLikeEN.setVisible(false);
+              btnDislikeEN.setVisible(false);
           } catch (SQLException ex) {
               Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -230,7 +230,8 @@ public class Controller implements Initializable {
       if (event.getSource()==btnLikeRA) {
           try {
               RALikes();
-              
+              btnLikeRA.setVisible(false);
+              btnDislikeRA.setVisible(false);
               
           } catch (SQLException ex) {
               Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -239,7 +240,8 @@ public class Controller implements Initializable {
       if (event.getSource()==btnDislikeRA) {
           try {
               RADislikes();
-             
+              btnLikeRA.setVisible(false);
+              btnDislikeRA.setVisible(false);
           } catch (SQLException ex) {
               Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -909,7 +911,7 @@ String[] Datos=new String[2];
         for (int i = 0; i < Maestros.size(); i++) {
           
             //System.out.println(Maestros.get(i).toString().contains(Docente));
-            if (Maestros.get(i).toString().contains(Docente)) {
+            if (Maestros.get(i).toString().contains(Docente) || Maestros.get(i).getAlias().contains(Docente)) {
           listDocenteS.getItems().add(Maestros.get(i).toString());
       }}
         }
@@ -1144,6 +1146,9 @@ return n;
         }
 
    return id;
+   }
+   public void changeColor(){
+   
    }
  public Controller() {
         con = BaseDeDatos.Conexion();
