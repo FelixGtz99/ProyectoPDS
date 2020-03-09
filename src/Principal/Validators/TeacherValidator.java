@@ -5,8 +5,6 @@
  */
 package Principal.Validators;
 
-import Validators.Usuario;
-import Validators.Validator;
 import java.util.ArrayList;
 import java.util.List;
 

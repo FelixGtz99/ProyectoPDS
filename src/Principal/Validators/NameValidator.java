@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Validators;
-
+package Principal.Validators;
+import Principal.Validators.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 

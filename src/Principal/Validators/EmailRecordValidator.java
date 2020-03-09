@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Validators;
+package Principal.Validators;
+
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,7 +22,8 @@ public class EmailRecordValidator implements Validator<Usuario>{
       String email = info.getEmail();
       String record = info.getRecord();
       boolean emailflag = false;
-      
+       
+      if (record.length()==9) {     
       if(record.charAt(0)=='2' || record.charAt(3)=='2' || record.length()==9){ 
          int recyear = 0;
          int currentyear = Calendar.getInstance().get(Calendar.YEAR);
@@ -40,6 +42,8 @@ public class EmailRecordValidator implements Validator<Usuario>{
           errors.add("Expediente no puede estar vacío");
       } else{
           errors.add("Expediente inválido");
+      }}else{
+      errors.add("deb llegar a 9");
       }
       
       if(email.isEmpty()){
