@@ -228,7 +228,7 @@ public class Controller implements Initializable {
             try {
                 // ChangeView("UserRegister",event);
                 EvaluationLikes();
-             
+
             } catch (SQLException ex) {
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -237,7 +237,7 @@ public class Controller implements Initializable {
             try {
                 // ChangeView("UserRegister",event);
                 EvaluationDislikes();
-              
+
             } catch (SQLException ex) {
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -255,7 +255,7 @@ public class Controller implements Initializable {
                 ChangeView("Menu", event);
 
             } else {
-                 Alert Usuario = new Alert(Alert.AlertType.INFORMATION, "Correo/Contraseña equivado", ButtonType.OK);
+                Alert Usuario = new Alert(Alert.AlertType.INFORMATION, "Correo/Contraseña equivado", ButtonType.OK);
                 Usuario.setTitle("Ingreso");
 
                 Usuario.showAndWait();
@@ -288,7 +288,6 @@ public class Controller implements Initializable {
         if (event.getSource() == btnLikeRA) {
             try {
                 RALikes();
-               
 
             } catch (SQLException ex) {
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -297,7 +296,7 @@ public class Controller implements Initializable {
         if (event.getSource() == btnDislikeRA) {
             try {
                 RADislikes();
-            
+
             } catch (SQLException ex) {
                 Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -321,7 +320,7 @@ public class Controller implements Initializable {
         }
         if (event.getSource() == btnEvaluarS) {
             E = (String) listDocenteS.getSelectionModel().getSelectedItem();
-                M = (String) listMateriaS.getSelectionModel().getSelectedItem();
+            M = (String) listMateriaS.getSelectionModel().getSelectedItem();
             ChangeView("Evaluate", event);
         }
         if (event.getSource() == btnEvaluacionesS) {
@@ -349,11 +348,10 @@ public class Controller implements Initializable {
             ChangeView("Menu", event);
 
         }
-         if (event.getSource() == btnAddTR) {
-      
-          
-listTR.getItems().add( cbMateriaTR.getSelectionModel().getSelectedItem());
-MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
+        if (event.getSource() == btnAddTR) {
+
+            listTR.getItems().add(cbMateriaTR.getSelectionModel().getSelectedItem());
+            MM.add(cbMateriaTR.getSelectionModel().getSelectedItem());
 
         }
         //Botones User Register
@@ -476,19 +474,18 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
 
         }
     }
-    
-    public  void getVotos() throws SQLException{
-    String SQL="SELECT * FROM Votos";
-    preparedStatement=con.prepareStatement(SQL);
-    resultSet=preparedStatement.executeQuery();
-      
-            while(resultSet.next()){
-    Voto v=new Voto(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3));
-    Votos.add(v);
-    
+
+    public void getVotos() throws SQLException {
+        String SQL = "SELECT * FROM Votos";
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Voto v = new Voto(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3));
+            Votos.add(v);
+
         }
-    
-            
+
     }
 
     private int logIn() throws SQLException {
@@ -518,7 +515,7 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
 
     public void EvaluationLikes() throws SQLException {
         int id = 0;
-        boolean permiso=true;
+        boolean permiso = true;
         Object e = listEvaluation.getSelectionModel().getSelectedItem();
         System.out.println(e.toString());
         for (int i = 0; i < Evaluaciones.size(); i++) {
@@ -529,48 +526,48 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
             }
         }
         if (Votos.isEmpty()) {
-            permiso=true;
-        }else{
-        for (int i = 0; i < Votos.size(); i++) {
-            if (Votos.get(i).getExpediente()==UserID && Votos.get(i).getevaluacion()==id) {
-                permiso=false;
+            permiso = true;
+        } else {
+            for (int i = 0; i < Votos.size(); i++) {
+                if (Votos.get(i).getExpediente() == UserID && Votos.get(i).getevaluacion() == id) {
+                    permiso = false;
+                }
+
             }
-  
-        }}
-        if (id != 0 ) {
-              if ( permiso) {
-     
-                        String SQL2 = "INSERT INTO public.Votos(id_evaluacion, id_usuario, voto) VALUES (?, ?, ?); ";
-                        preparedStatement = con.prepareStatement(SQL2);
-                        preparedStatement.setInt(1, id);
-                        preparedStatement.setInt(2, UserID);
-                         preparedStatement.setInt(3, 1);
-                        preparedStatement.executeUpdate();
-                          Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Voto realizado correctament ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+        }
+        if (id != 0) {
+            if (permiso) {
 
-                        Mensaje.showAndWait();
-                        getVotos();
-                } else {
-                        Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "No puede volver a votar por esa opcion ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+                String SQL2 = "INSERT INTO public.Votos(id_evaluacion, id_usuario, voto) VALUES (?, ?, ?); ";
+                preparedStatement = con.prepareStatement(SQL2);
+                preparedStatement.setInt(1, id);
+                preparedStatement.setInt(2, UserID);
+                preparedStatement.setInt(3, 1);
+                preparedStatement.executeUpdate();
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Voto realizado correctament ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
 
-                        Mensaje.showAndWait();
-                    
-        }}else{
-                 Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Tiene que seleccionar una evaluacion ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+                Mensaje.showAndWait();
+                getVotos();
+            } else {
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "No puede volver a votar por esa opcion ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
 
-                        Mensaje.showAndWait();
-                }
-           
-            
-                }
-        
+                Mensaje.showAndWait();
+
+            }
+        } else {
+            Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Tiene que seleccionar una evaluacion ", ButtonType.OK);
+            Mensaje.setTitle("Votos");
+
+            Mensaje.showAndWait();
+        }
+
+    }
 
     public void RALikes() throws SQLException {
-         int id = 0;
-        boolean permiso=true;
+        int id = 0;
+        boolean permiso = true;
         Object e = listRA.getSelectionModel().getSelectedItem();
         System.out.println(e.toString());
         for (int i = 0; i < EvaluacionesT.size(); i++) {
@@ -581,49 +578,49 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
             }
         }
         if (Votos.isEmpty()) {
-            permiso=true;
-        }else{
-        for (int i = 0; i < Votos.size(); i++) {
-            if (Votos.get(i).getExpediente()==UserID && Votos.get(i).getevaluacion()==id) {
-                permiso=false;
+            permiso = true;
+        } else {
+            for (int i = 0; i < Votos.size(); i++) {
+                if (Votos.get(i).getExpediente() == UserID && Votos.get(i).getevaluacion() == id) {
+                    permiso = false;
+                }
+
             }
-  
-        }}
-        if (id != 0 ) {
-              if ( permiso) {
-     
-                        String SQL2 = "INSERT INTO public.Votos(id_evaluacion, id_usuario, voto) VALUES (?, ?, ?); ";
-                        preparedStatement = con.prepareStatement(SQL2);
-                        preparedStatement.setInt(1, id);
-                        preparedStatement.setInt(2, UserID);
-                         preparedStatement.setInt(3, 1);
-                        preparedStatement.executeUpdate();
-                          Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Voto realizado correctament ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+        }
+        if (id != 0) {
+            if (permiso) {
 
-                        Mensaje.showAndWait();
-                        getVotos();
-                } else {
-                        Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "No puede volver a votar por esa opcion ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+                String SQL2 = "INSERT INTO public.Votos(id_evaluacion, id_usuario, voto) VALUES (?, ?, ?); ";
+                preparedStatement = con.prepareStatement(SQL2);
+                preparedStatement.setInt(1, id);
+                preparedStatement.setInt(2, UserID);
+                preparedStatement.setInt(3, 1);
+                preparedStatement.executeUpdate();
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Voto realizado correctament ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
 
-                        Mensaje.showAndWait();
-                    
-        }}else{
-                 Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Tiene que seleccionar una evaluacion ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+                Mensaje.showAndWait();
+                getVotos();
+            } else {
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "No puede volver a votar por esa opcion ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
 
-                        Mensaje.showAndWait();
-                }
-           
-            
-                }
-    
+                Mensaje.showAndWait();
+
+            }
+        } else {
+            Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Tiene que seleccionar una evaluacion ", ButtonType.OK);
+            Mensaje.setTitle("Votos");
+
+            Mensaje.showAndWait();
+        }
+
+    }
 
     public void RADislikes() throws SQLException {
-    
-     int id = 0;
-        boolean permiso=true;
+
+        int id = 0;
+        boolean permiso = true;
         Object e = listRA.getSelectionModel().getSelectedItem();
         System.out.println(e.toString());
         for (int i = 0; i < EvaluacionesT.size(); i++) {
@@ -634,47 +631,48 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
             }
         }
         if (Votos.isEmpty()) {
-            permiso=true;
-        }else{
-        for (int i = 0; i < Votos.size(); i++) {
-            if (Votos.get(i).getExpediente()==UserID && Votos.get(i).getevaluacion()==id) {
-                permiso=false;
+            permiso = true;
+        } else {
+            for (int i = 0; i < Votos.size(); i++) {
+                if (Votos.get(i).getExpediente() == UserID && Votos.get(i).getevaluacion() == id) {
+                    permiso = false;
+                }
+
             }
-  
-        }}
-        if (id != 0 ) {
-              if ( permiso) {
-     
-                        String SQL2 = "INSERT INTO public.Votos(id_evaluacion, id_usuario, voto) VALUES (?, ?, ?); ";
-                        preparedStatement = con.prepareStatement(SQL2);
-                        preparedStatement.setInt(1, id);
-                        preparedStatement.setInt(2, UserID);
-                         preparedStatement.setInt(3, -1);
-                        preparedStatement.executeUpdate();
-                          Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Voto realizado correctament ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+        }
+        if (id != 0) {
+            if (permiso) {
 
-                        Mensaje.showAndWait();
-                        getVotos();
-                } else {
-                        Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "No puede volver a votar por esa opcion ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+                String SQL2 = "INSERT INTO public.Votos(id_evaluacion, id_usuario, voto) VALUES (?, ?, ?); ";
+                preparedStatement = con.prepareStatement(SQL2);
+                preparedStatement.setInt(1, id);
+                preparedStatement.setInt(2, UserID);
+                preparedStatement.setInt(3, -1);
+                preparedStatement.executeUpdate();
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Voto realizado correctament ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
 
-                        Mensaje.showAndWait();
-                    
-        }}else{
-                 Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Tiene que seleccionar una evaluacion ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+                Mensaje.showAndWait();
+                getVotos();
+            } else {
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "No puede volver a votar por esa opcion ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
 
-                        Mensaje.showAndWait();
-                }
-           
-            
-                }
+                Mensaje.showAndWait();
+
+            }
+        } else {
+            Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Tiene que seleccionar una evaluacion ", ButtonType.OK);
+            Mensaje.setTitle("Votos");
+
+            Mensaje.showAndWait();
+        }
+
+    }
 
     public void EvaluationDislikes() throws SQLException {
         int id = 0;
-        boolean permiso=true;
+        boolean permiso = true;
         Object e = listEvaluation.getSelectionModel().getSelectedItem();
         System.out.println(e.toString());
         for (int i = 0; i < Evaluaciones.size(); i++) {
@@ -685,44 +683,67 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
             }
         }
         if (Votos.isEmpty()) {
-            permiso=true;
-        }else{
-        for (int i = 0; i < Votos.size(); i++) {
-            if (Votos.get(i).getExpediente()==UserID && Votos.get(i).getevaluacion()==id) {
-                permiso=false;
+            permiso = true;
+        } else {
+            for (int i = 0; i < Votos.size(); i++) {
+                if (Votos.get(i).getExpediente() == UserID && Votos.get(i).getevaluacion() == id) {
+                    permiso = false;
+                }
+
             }
-  
-        }}
-        if (id != 0 ) {
-              if ( permiso) {
-     
-                        String SQL2 = "INSERT INTO public.Votos(id_evaluacion, id_usuario, voto) VALUES (?, ?, ?); ";
-                        preparedStatement = con.prepareStatement(SQL2);
-                        preparedStatement.setInt(1, id);
-                        preparedStatement.setInt(2, UserID);
-                         preparedStatement.setInt(3, -1);
-                        preparedStatement.executeUpdate();
-                          Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Voto realizado correctament ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+        }
+        if (id != 0) {
+            if (permiso) {
 
-                        Mensaje.showAndWait();
-                        getVotos();
-                } else {
-                        Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "No puede volver a votar por esa opcion ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
+                String SQL2 = "INSERT INTO public.Votos(id_evaluacion, id_usuario, voto) VALUES (?, ?, ?); ";
+                preparedStatement = con.prepareStatement(SQL2);
+                preparedStatement.setInt(1, id);
+                preparedStatement.setInt(2, UserID);
+                preparedStatement.setInt(3, -1);
+                preparedStatement.executeUpdate();
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Voto realizado correctament ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
 
-                        Mensaje.showAndWait();
+                Mensaje.showAndWait();
+                getVotos();
+                for (int i = 0; i < Evaluaciones.size(); i++) {
+                    if (Evaluaciones.get(i).getId_evaluacion()==id) {
+                    int c=0;
+                        while(Votos.get(i).getDecision()==-1){
+                    c++;
+                    }if (c>=5) {
+                          BorrarEvaluacion(id); 
+                          
+                        }
                     
-        }}else{
-                 Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Tiene que seleccionar una evaluacion ", ButtonType.OK);
-                        Mensaje.setTitle("Votos");
-
-                        Mensaje.showAndWait();
+                    }
+                    
                 }
-           
-            
-                }
+            } else {
+                Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "No puede volver a votar por esa opcion ", ButtonType.OK);
+                Mensaje.setTitle("Votos");
 
+                Mensaje.showAndWait();
+
+            }
+        } else {
+            Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "Tiene que seleccionar una evaluacion ", ButtonType.OK);
+            Mensaje.setTitle("Votos");
+
+            Mensaje.showAndWait();
+        }
+
+    }
+public void BorrarEvaluacion(int n) throws SQLException{
+String SQL="DELETE FROM public.evaluacion WHERE id_evaluacion=?";
+preparedStatement=con.prepareStatement(SQL);
+preparedStatement.setInt(1, n);
+preparedStatement.executeUpdate();
+ Alert Mensaje = new Alert(Alert.AlertType.INFORMATION, "La evaluacion fue eliminada por superar los 5 no me gusta", ButtonType.OK);
+            Mensaje.setTitle("Votos");
+
+            Mensaje.showAndWait();
+}
     public void UserRegister() {
         List<String> errores = new ArrayList();
         String names = txtNombresUR.getText();
@@ -819,7 +840,7 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
             for (String error : errores) {
                 errordisplay = errordisplay + error + "\n";
             }
-
+            UserID = 0;
             Alert Mensaje = new Alert(Alert.AlertType.WARNING, errordisplay, ButtonType.OK);
             Mensaje.setTitle("Error");
 
@@ -850,7 +871,6 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
         }
 
     }
-  
 
     public String ConsultarNombreDocente(int n) {
         String nombre = " ";
@@ -1120,31 +1140,31 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
     }
 
     private void ListarMaterias() {
-        int m=0;
+        int m = 0;
         for (int i = 0; i < Maestros.size(); i++) {
-     
-            if (Maestros.get(i).toString().equals((String)cbDocenteEV.getSelectionModel().getSelectedItem())) {
-                m=Maestros.get(i).getId_docente();
-                System.out.println("Es verdad con numero"+m);
+
+            if (Maestros.get(i).toString().equals((String) cbDocenteEV.getSelectionModel().getSelectedItem())) {
+                m = Maestros.get(i).getId_docente();
+                System.out.println("Es verdad con numero" + m);
             }
         }
         for (int i = 0; i < Materias.size(); i++) {
-         
-                  if (Materias.get(i).getId_docente()==m) {
-              cbMateriaEV.getItems().add(Materias.get(i).toString());  
-            
-            }
-      
-//            cbMateriaEV.getItems().add(Materias.get(i).toString());
 
+            if (Materias.get(i).getId_docente() == m) {
+                cbMateriaEV.getItems().add(Materias.get(i).toString());
+
+            }
+
+//            cbMateriaEV.getItems().add(Materias.get(i).toString());
         }
 
     }
-    private void ListarMateriasT(){
-     
+
+    private void ListarMateriasT() {
+
         for (int i = 0; i < Materias.size(); i++) {
-              cbMateriaTR.getItems().add(Materias.get(i).toString());  
-            }
+            cbMateriaTR.getItems().add(Materias.get(i).toString());
+        }
     }
 
     private String Register() {
@@ -1178,18 +1198,16 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
             int id = ConsultarLastIDD() + 1;
             //Cometimos un error al crear la base de datos asi que asigne un valor aleatrio al id de docente al no ser auto incrmento 
             String sql = "INSERT INTO public.docentes(id_docente, nombre, apellido, alias) VALUES (?, ?, ?, ?)";
-          
-            
+
             try {
-                   preparedStatement = con.prepareStatement(sql);
+                preparedStatement = con.prepareStatement(sql);
                 preparedStatement.setInt(1, id);
                 preparedStatement.setString(2, nom);
                 preparedStatement.setString(3, Ape);
                 preparedStatement.setString(4, Alias);
-              preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate();
                 GuardarMaterias(id);
-    
-               
+
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
 
@@ -1198,45 +1216,47 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
 
         return status;
     }
-    public void GuardarMaterias(int id) throws SQLException{
-       ArrayList<String> l= new ArrayList();
-                for (int i = 0; i < MM.size(); i++) {
-                    for (int j = 0; j <Materias.size(); j++) {
-                   
-                            
-                        if (MM.get(i).equals(Materias.get(j).toString())) {
 
-                              if (l.contains(Materias.get(j).toString())) {
-                                
-                            }else{
-                                                            l.add(Materias.get(j).toString());
-                                  int idm=getLastIDMateria()+1;
-                        String SQL="INSERT INTO public.materia(id_materia, id_docente, nombre_materia) VALUES (?, ?, ?);";
-                        preparedStatement=con.prepareStatement(SQL);
-                       preparedStatement.setInt(1, idm);
-                       preparedStatement.setInt(2, id);
-                       preparedStatement.setString(3, Materias.get(j).toString());
-                       preparedStatement.executeUpdate();
-                        }
+    public void GuardarMaterias(int id) throws SQLException {
+        ArrayList<String> l = new ArrayList();
+        for (int i = 0; i < MM.size(); i++) {
+            for (int j = 0; j < Materias.size(); j++) {
+
+                if (MM.get(i).equals(Materias.get(j).toString())) {
+
+                    if (l.contains(Materias.get(j).toString())) {
+
+                    } else {
+                        l.add(Materias.get(j).toString());
+                        int idm = getLastIDMateria() + 1;
+                        String SQL = "INSERT INTO public.materia(id_materia, id_docente, nombre_materia) VALUES (?, ?, ?);";
+                        preparedStatement = con.prepareStatement(SQL);
+                        preparedStatement.setInt(1, idm);
+                        preparedStatement.setInt(2, id);
+                        preparedStatement.setString(3, Materias.get(j).toString());
+                        preparedStatement.executeUpdate();
                     }
-                   
-                    
-                }}
-    }
- public int getLastIDMateria() throws SQLException{
- int id=0;
- String SQL="SELECT Count(*) FROM materia";
- preparedStatement=con.prepareStatement(SQL);
- resultSet=preparedStatement.executeQuery();
- if (!resultSet.next()) {
-                System.out.println("Error");
+                }
 
-            } else {
-                id = resultSet.getInt(1);
-                System.out.println("Insercion completa");
-            };
- return id+10000;
- }
+            }
+        }
+    }
+
+    public int getLastIDMateria() throws SQLException {
+        int id = 0;
+        String SQL = "SELECT Count(*) FROM materia";
+        preparedStatement = con.prepareStatement(SQL);
+        resultSet = preparedStatement.executeQuery();
+        if (!resultSet.next()) {
+            System.out.println("Error");
+
+        } else {
+            id = resultSet.getInt(1);
+            System.out.println("Insercion completa");
+        };
+        return id + 10000;
+    }
+
     public int getIdMateria() {
         int n = 0;
         for (int i = 0; i < Materias.size(); i++) {
@@ -1280,9 +1300,9 @@ MM.add( cbMateriaTR.getSelectionModel().getSelectedItem());
             @Override
             public void changed(ObservableValue observable, String oldValue, String newValue) {
                 // System.out.println("Selected value : " + newValue);
-cbMateriaEV.getItems().clear();
+                cbMateriaEV.getItems().clear();
                 //int id=ConsultarIDDocente();
-               ListarMaterias();
+                ListarMaterias();
                 // getItemsList();
 
             }
@@ -1426,8 +1446,8 @@ cbMateriaEV.getItems().clear();
             cbCarreraUR.setValue("ingeniería en sistemas de información");
 
         }
-         if (d[d.length - 1].equals("TeacherRegister.fxml")) {
-          ListarMateriasT();
+        if (d[d.length - 1].equals("TeacherRegister.fxml")) {
+            ListarMateriasT();
 
         }
     }

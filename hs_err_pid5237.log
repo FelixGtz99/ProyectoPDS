@@ -1,0 +1,23 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007fb39f6f8b76, pid=5237, tid=5301
+#
+# JRE version: Java(TM) SE Runtime Environment (13.0.2+8) (build 13.0.2+8)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (13.0.2+8, mixed mode, sharing, tiered, compressed oops, g1 gc, linux-amd64)
+# Problematic frame:
+# C  [libc.so.6+0x49b76]
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %d %P" (or dumping to /home/felixgtz/NetBeansProjects/ProyectoPDS3/core.5237)
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF-8 --module-path=D:\Programacion\javafx-sdk-13.0.2\lib --add-modules=javafx.controls,javafx.fxml --module-path=/home/felixgtz/openjfx-13.0.2_linux-x64_bin-sdk/javafx-sdk-13.0.2/lib/javafx-swt.jar:/home/felixgtz/openjfx-13.0.2_linux-x64_bin-sdk/javafx-sdk-13.0.2/lib/javafx.base.jar:/home/felixgtz/openjfx-13.0.2_linux-x64_bin-sdk/javafx-sdk-13.0.2/lib/javafx.controls.jar:/home/felixgtz/openjfx-13.0.2_linux-x64_bin-sdk/javafx-sdk-13.0.2/lib/javafx.fxml.jar:/home/felixgtz/openjfx-13.0.2_linux-x64_bin-sdk/javafx-sdk-13.0.2/lib/javafx.graphics.jar:/home/felixgtz/openjfx-13.0.2_linux-x64_bin-sdk/javafx-sdk-13.0.2/lib/javafx.media.jar:/home/felixgtz/openjfx-13.0.2_linux-x64_bin-sdk/javafx-sdk-13.0.2/lib/javafx.swing.jar:/home/felixgtz/openjfx-13.0.2_linux-x64_bin-sdk/javafx-sdk-13.0.2/lib/javafx.web.jar Principal.main
+
+Host: 
